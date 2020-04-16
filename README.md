@@ -6,8 +6,11 @@ Because we use Laravel and want to have decent Psalm coverage.
 Yes, we are aware on existence of [official integration](https://github.com/psalm/psalm-plugin-laravel).
 But it's bigger and has some generalisations. Our implementation adds some limitations on code but, hopefully, more lightweight and makes better checks.
 Also, this one is more internal tool still, so lack of documentation and other drawbacks could still present :/
+Choice is yours — check both and find what suits better for you.
 
 ## Limitations
+
+We try to make the code easier for Psalm understanding by introducing these limitations. Idea of them is to decrease amount of magic as much as possible.
 
 * all model requests must start with `Model::query()`
 * don't use facades (we consider this antipattern), only proper constructor/signature DI should be used

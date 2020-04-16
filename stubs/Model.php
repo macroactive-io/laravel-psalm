@@ -35,6 +35,16 @@ class Model
     public function __set(string $name, $value): void {}
 
     /**
+     * @param mixed         $column
+     * @param mixed|null   $operator
+     * @param mixed|null   $value
+     * @param string       $boolean
+     *
+     * @psalm-return T
+     */
+    public function where($column, $operator = null, $value = null, $boolean = 'and') {}
+
+    /**
      * @psalm-return T
      */
     public static function whereId() {}
