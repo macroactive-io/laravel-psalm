@@ -1,0 +1,26 @@
+{
+  "name": "macroactive/laravel-psalm",
+  "description": "Psalm integration with Laravel. Do not cover Facades. Relatively simple integration",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Aleksandr Zhuravlev",
+      "email": "scif-1986@ya.ru"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Macroactive\\LaravelPsalmPlugin\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">7.2",
+    "vimeo/psalm": "^3.0.15 || dev-master"
+  },
+  "extra": {
+    "psalm" : {
+      "pluginClass": "Macroactive\\LaravelPsalmPlugin\\Plugin"
+    }
+  }
+}
