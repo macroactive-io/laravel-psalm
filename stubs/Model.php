@@ -58,6 +58,12 @@ class Model
      * @param string[] $columns
      * @psalm-return Collection<T>
      */
+    public function all($columns = ['*']) {}
+
+    /**
+     * @param string[] $columns
+     * @psalm-return Collection<T>
+     */
     public function get($columns = ['*']) {}
 
     /**
@@ -73,4 +79,17 @@ class Model
      * @psalm-return Collection<T>
      */
     public function findOrFail($id, $columns = ['*']) {}
+
+    /**
+     * @param string|array $relations
+     * @psalm-return Collection<T>
+     */
+    public function with($relations) {}
+
+    /**
+     * @param mixed  $relations
+     * @param string $direction
+     * @psalm-return Collection<T>
+     */
+    public function orderBy($column, $direction = 'asc') {}
 }

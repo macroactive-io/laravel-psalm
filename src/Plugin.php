@@ -15,5 +15,6 @@ final class Plugin implements PluginEntryPointInterface
         $dir = dirname(__DIR__);
         $psalm->addStubFile($dir . '/stubs/Collection.php');
         $psalm->addStubFile($dir . '/stubs/Model.php');
+        $psalm->addStubFile($dir . '/stubs/functions.php');
     }
 }
