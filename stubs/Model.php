@@ -35,22 +35,42 @@ class Model
     public function __set(string $name, $value): void {}
 
     /**
-     * @psalm-return T|Builder
+     * @psalm-return T
      */
     public static function whereId() {}
 
     /**
-     * @psalm-return T|Builder
+     * @psalm-return T
      */
     public static function newModelQuery() {}
 
     /**
-     * @psalm-return T|Builder
+     * @psalm-return T
      */
     public static function newQuery() {}
 
     /**
-     * @psalm-return T|Builder
+     * @psalm-return T
      */
     public static function query() {}
+
+    /**
+     * @param string[] $columns
+     * @psalm-return Collection<T>
+     */
+    public function get($columns = ['*']) {}
+
+    /**
+     * @param $id
+     * @param string[] $columns
+     * @psalm-return T
+     */
+    public function find($id, $columns = ['*']) {}
+
+    /**
+     * @param $id
+     * @param string[] $columns
+     * @psalm-return Collection<T>
+     */
+    public function findOrFail($id, $columns = ['*']) {}
 }
