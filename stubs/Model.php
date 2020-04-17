@@ -47,7 +47,7 @@ class Model
     /**
      * @psalm-return T
      */
-    public static function whereId() {}
+    public function whereId() {}
 
     /**
      * @psalm-return T
@@ -84,11 +84,31 @@ class Model
     public function find($id, $columns = ['*']) {}
 
     /**
-     * @param $id
+     * @param int|string $id
      * @param string[] $columns
      * @psalm-return Collection<T>
      */
     public function findOrFail($id, $columns = ['*']) {}
+
+    /**
+     * @param int|string $id
+     * @param string[] $columns
+     * @psalm-return T
+     */
+    public function firstOrFail($id, $columns = ['*']) {}
+
+    /**
+     * @param string[] $columns
+     * @psalm-return T
+     */
+    public function first($columns = ['*']) {}
+
+    /**
+     * @param int|string $id
+     * @param string[]   $columns
+     * @psalm-return T
+     */
+    public function findOrNew($id, $columns = ['*']) {}
 
     /**
      * @param string|array $relations
