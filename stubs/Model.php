@@ -4,9 +4,6 @@ namespace Illuminate\Database\Eloquent;
 
 use Illuminate\Database\Eloquent\Builder;
 
-/**
- * @template T
- */
 class Model
 {
     /** @var bool */
@@ -40,86 +37,86 @@ class Model
      * @param mixed|null   $value
      * @param string       $boolean
      *
-     * @psalm-return T
+     * @psalm-return static
      */
     public function where($column, $operator = null, $value = null, $boolean = 'and') {}
 
     /**
-     * @psalm-return T
+     * @psalm-return static
      */
     public function whereId() {}
 
     /**
-     * @psalm-return T
+     * @psalm-return static
      */
     public static function newModelQuery() {}
 
     /**
-     * @psalm-return T
+     * @psalm-return static
      */
     public static function newQuery() {}
 
     /**
-     * @psalm-return T
+     * @psalm-return static
      */
     public static function query() {}
 
     /**
      * @param string[] $columns
-     * @psalm-return Collection<T>
+     * @psalm-return Collection<static>
      */
     public function all($columns = ['*']) {}
 
     /**
      * @param string[] $columns
-     * @psalm-return Collection<T>
+     * @psalm-return Collection<static>
      */
     public function get($columns = ['*']) {}
 
     /**
      * @param $id
      * @param string[] $columns
-     * @psalm-return T
+     * @psalm-return static
      */
     public function find($id, $columns = ['*']) {}
 
     /**
      * @param int|string $id
      * @param string[] $columns
-     * @psalm-return Collection<T>
+     * @psalm-return Collection<static>
      */
     public function findOrFail($id, $columns = ['*']) {}
 
     /**
      * @param int|string $id
      * @param string[] $columns
-     * @psalm-return T
+     * @psalm-return static
      */
     public function firstOrFail($id, $columns = ['*']) {}
 
     /**
      * @param string[] $columns
-     * @psalm-return T
+     * @psalm-return static
      */
     public function first($columns = ['*']) {}
 
     /**
      * @param int|string $id
      * @param string[]   $columns
-     * @psalm-return T
+     * @psalm-return static
      */
     public function findOrNew($id, $columns = ['*']) {}
 
     /**
      * @param string|array $relations
-     * @psalm-return Collection<T>
+     * @psalm-return Collection<static>
      */
     public function with($relations) {}
 
     /**
      * @param mixed  $relations
      * @param string $direction
-     * @psalm-return Collection<T>
+     * @psalm-return Collection<static>
      */
     public function orderBy($column, $direction = 'asc') {}
 }
