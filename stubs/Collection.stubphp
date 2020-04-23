@@ -8,57 +8,169 @@ use Illuminate\Support\Enumerable;
 /**
  * Ideas of markup could be fetched from https://github.com/doctrine/collections/blob/master/lib/Doctrine/Common/Collections/Collection.php
  *
- * @template TKey of array-key
  * @template T
- * @template-extends ArrayAccess<TKey|null, T>
- */
+ *
+ * @template-implements ArrayAccess<array-key, T>
+ * @template-implements Enumerable<T>
+*/
 class Collection implements ArrayAccess, Enumerable
 {
-    /**
-     * Get all of the items in the collection.
-     *
-     * @psalm-return T[]
-     * @return array
-     */
+    /** @var array<T> */
+    protected $items = [];
+
+    /** @param array<T> $items */
+    public function __construct($items = []) {}
+
+    /** @return array<T> */
     public function all() {}
 
+    public function toArray() {}
+
+    public static function make($items = []) {}
+
     /**
-     * Get the average value of a given key.
+     * @param  int  $number
+     * @param  callable(array<T>, array-key):T  $callback
+     * @return static<T>
+     */
+    public static function times($number, callable $callback = null) {}
+
+    public static function wrap($value) {}
+
+    public static function unwrap($value) {}
+
+    public function average($callback = null) {}
+
+    public function some($key, $operator = null, $value = null) {}
+
+    public function containsStrict($key, $value = null) {}
+
+    public function dd(...$args) {}
+
+    public function dump() {}
+
+    public function each(callable $callback) {}
+
+    public function eachSpread(callable $callback) {}
+
+    public function every($key, $operator = null, $value = null) {}
+
+    public function when($value, callable $callback, callable $default = null) {}
+
+    public function whenEmpty(callable $callback, callable $default = null) {}
+
+    public function whenNotEmpty(callable $callback, callable $default = null) {}
+
+    public function unless($value, callable $callback, callable $default = null) {}
+
+    public function unlessEmpty(callable $callback, callable $default = null) {}
+
+    public function unlessNotEmpty(callable $callback, callable $default = null) {}
+
+    public function where($key, $operator = null, $value = null) {}
+
+    public function whereStrict($key, $value) {}
+
+    public function whereIn($key, $values, $strict = false) {}
+
+    public function whereInStrict($key, $values) {}
+
+    public function whereBetween($key, $values) {}
+
+    public function whereNotBetween($key, $values) {}
+
+    public function whereNotIn($key, $values, $strict = false) {}
+
+    public function whereNotInStrict($key, $values) {}
+
+    public function whereInstanceOf($type) {}
+
+    public function firstWhere($key, $operator = null, $value = null) {}
+
+    public function isNotEmpty() {}
+
+    public function mapSpread(callable $callback) {}
+
+    public function mapToGroups(callable $callback) {}
+
+    public function flatMap(callable $callback) {}
+
+    public function mapInto($class) {}
+
+    public function min($callback = null) {}
+
+    public function max($callback = null) {}
+
+    public function forPage($page, $perPage) {}
+
+    public function partition($key, $operator = null, $value = null) {}
+
+    public function sum($callback = null) {}
+
+    public function tap(callable $callback) {}
+
+    public function pipe(callable $callback) {}
+
+    public function reject($callback = true) {}
+
+    public function unique($key = null, $strict = false) {}
+
+    public function uniqueStrict($key = null) {}
+
+    public function countBy($callback = null) {}
+
+    public function collect() {}
+
+    /**
+     * Get an iterator for the items.
      *
+     * @return \ArrayIterator<T>
+     */
+    public function getIterator() {}
+
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+    }
+
+    public static function proxy($method) {}
+
+    public function __get($key)
+    {
+        // TODO: Implement __get() method.
+    }
+
+    public function toJson($options = 0) {}
+
+    public function jsonSerialize() {}
+
+    /**
      * @param callable|string|null $callback
      * @return mixed
      */
     public function avg($callback = null) {}
 
     /**
-     * Get the median of a given key.
-     *
      * @param string|array|null $key
      * @return mixed
      */
     public function median($key = null) {}
 
     /**
-     * Get the mode of a given key.
-     *
      * @param string|array|null $key
-     * @return array|null
+     * @return array<T>|null
      */
     public function mode($key = null) {}
 
     /**
-     * Collapse the collection of items into a single array.
-     *
-     * @return static
+     * @return static<T>
      */
     public function collapse() {}
 
     /**
-     * Determine if an item exists in the collection.
-     *
-     * @param mixed $key
+     * @param array-key $key
      * @param mixed $operator
-     * @param mixed $value
+     * @param null|T $value
      * @return bool
      */
     public function contains($key, $operator = null, $value = null) {}
@@ -66,27 +178,21 @@ class Collection implements ArrayAccess, Enumerable
     /**
      * Cross join with the given lists, returning all possible permutations.
      *
-     * @param mixed ...$lists
-     * @return static
+     * @param array<T>|static<T> ...$lists
+     * @return static<T>
      */
     public function crossJoin(...$lists) {}
 
     /**
-     * Get the items in the collection that are not present in the given items.
-     *
-     * @param mixed $items
-     * @psalm-param T[] $items
-     * @return static
+     * @psalm-param  iterable<T>  $items
+     * @psalm-return static<T>
      */
     public function diff($items) {}
 
     /**
-     * Get the items in the collection that are not present in the given items, using the callback.
-     *
-     * @param mixed    $items
-     * @psalm-param T[] $items
+     * @param iterable<T>    $items
      * @param callable $callback
-     * @return static
+     * @return static<T>
      */
     public function diffUsing($items, callable $callback) {}
 
@@ -111,7 +217,7 @@ class Collection implements ArrayAccess, Enumerable
      * Get the items in the collection whose keys are not present in the given items.
      *
      * @param mixed $items
-     * @psalm-param TKey[]
+     * @psalm-param array-key[] $items
      * @return static
      */
     public function diffKeys($items) {}
@@ -195,7 +301,7 @@ class Collection implements ArrayAccess, Enumerable
     /**
      * Get an item from the collection by key.
      *
-     * @param mixed $key
+     * @param array-key $key
      * @param mixed $default
      *
      * @psalm-return T
@@ -216,7 +322,7 @@ class Collection implements ArrayAccess, Enumerable
      * Key an associative array by a field or using a callback.
      *
      * @param callable|string $keyBy
-     * @return static
+     * @return Collection<T>
      */
     public function keyBy($keyBy) {}
 
@@ -273,7 +379,7 @@ class Collection implements ArrayAccess, Enumerable
      * Get the keys of the collection items.
      *
      * @return static
-     * @psalm-return static<TKey>
+     * @psalm-return static<array-key>
      */
     public function keys() {}
 
@@ -385,11 +491,11 @@ class Collection implements ArrayAccess, Enumerable
     /**
      * Push an item onto the beginning of the collection.
      *
-     * @psalm-param T
+     * @psalm-param T $value
      *
      * @param mixed $value
      * @param mixed $key
-     * @return self
+     * @return static<T>
      */
     public function prepend($value, $key = null) {}
 
@@ -597,9 +703,7 @@ class Collection implements ArrayAccess, Enumerable
     public function transform(callable $callback) {}
 
     /**
-     * Reset the keys on the underlying array.
-     *
-     * @return static
+     * @return static<T>
      */
     public function values() {}
 
@@ -615,73 +719,54 @@ class Collection implements ArrayAccess, Enumerable
     public function zip($items) {}
 
     /**
-     * Pad collection to the specified length with a value.
-     *
      * @param int   $size
      * @param mixed $value
-     * @return static
+     * @return static<T>
      */
     public function pad($size, $value) {}
 
     /**
-     * Get an iterator for the items.
-     *
-     * @return \ArrayIterator
-     */
-    public function getIterator() {}
-
-    /**
-     * Count the number of items in the collection.
-     *
      * @return int
      */
     public function count() {}
 
     /**
-     * Add an item to the collection.
-     *
-     * @param mixed $item
-     * @return self
+     * @param T $item
+     * @return static<T>
      */
     public function add($item) {}
 
     /**
-     * Get a base Support collection instance from this collection.
-     *
-     * @return self
+     * @return static<T>
      */
     public function toBase() {}
 
     /**
-     * Determine if an item exists at an offset.
-     *
-     * @param mixed $key
-     * @return bool
+     * @return \Illuminate\Support\LazyCollection
      */
-    public function offsetExists($key) {}
+    public function lazy() {}
 
     /**
-     * Get an item at a given offset.
-     *
-     * @param mixed $key
-     * @return mixed
+     * @param  array-key  $key
+     * @return bool
+     */
+    public function offsetExists($key): bool {}
+
+    /**
+     * @param  array-key  $key
+     * @return T|null
+     * @psalm-ignore-nullable-return
      */
     public function offsetGet($key) {}
 
     /**
-     * Set the item at a given offset.
-     *
-     * @param mixed $key
-     * @param mixed $value
-     * @return void
+     * @param array-key $key
+     * @param T         $value
      */
-    public function offsetSet($key, $value) {}
+    public function offsetSet($key, $value): void {}
 
     /**
-     * Unset the item at a given offset.
-     *
-     * @param string $key
-     * @return void
+     * @param array-key $key
      */
-    public function offsetUnset($key) {}
+    public function offsetUnset($key): void {}
 }
