@@ -1,0 +1,44 @@
+<?php
+
+namespace Illuminate\Database\Eloquent;
+
+/**
+ * @template T
+ */
+class Builder
+{
+    /**
+     * @return Builder<T>
+     */
+    public function getQuery(): Builder {}
+
+    /**
+     * @return Collection<T>
+     */
+    public function get($columns = ['*']): Collection {}
+
+    /**
+     * @param int|string $id
+     * @param string[]   $columns
+     * @return T
+     */
+    public function findOrFail($id, $columns = ['*']) {}
+
+    /**
+     * @param string       $relation
+     * @param Closure|null $callback
+     * @param string       $operator
+     * @param int          $count
+     * @return Builder<T>
+     */
+    public function whereHas($relation, Closure $callback = null, $operator = '>=', $count = 1) {}
+
+    /**
+     * @param string|callable $column
+     * @param string|null     $operator
+     * @param string|null     $value
+     * @param string          $boolean
+     * @return Builder<T>
+     */
+    public function where($column, $operator = null, $value = null, $boolean = 'and') {}
+}
