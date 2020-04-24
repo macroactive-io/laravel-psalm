@@ -51,7 +51,7 @@ class Model
     public static function newQuery() {}
 
     /**
-     * @psalm-return Builder<T>
+     * @psalm-return T&Builder<T>
      */
     public static function query() {}
 

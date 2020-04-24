@@ -25,6 +25,12 @@ class Builder
     public function findOrFail($id, $columns = ['*']) {}
 
     /**
+     * @param string[]   $columns
+     * @return T
+     */
+    public function firstOrFail($columns = ['*']) {}
+
+    /**
      * @param string       $relation
      * @param Closure|null $callback
      * @param string       $operator
