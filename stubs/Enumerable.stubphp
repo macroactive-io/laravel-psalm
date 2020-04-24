@@ -3,7 +3,10 @@
 /** Psalm doesn't have this stub somehow */
 namespace {
     interface JsonSerializable  {
-        public function jsonSerialize(): string;
+        /**
+         * @return string|array
+         */
+        public function jsonSerialize();
     }
 }
 

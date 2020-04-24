@@ -36,8 +36,8 @@ class Builder
     /**
      * @param string|callable $column
      * @param string|null     $operator
-     * @param string|null     $value
-     * @param string          $boolean
+     * @param mixed           $value
+     * @param 'and'|'or'      $boolean
      * @return Builder<T>
      */
     public function where($column, $operator = null, $value = null, $boolean = 'and') {}
