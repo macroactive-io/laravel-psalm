@@ -30,13 +30,10 @@ use Illuminate\Support\Collection;
  * @property-read       Collection|CountryRegion[] $regions
  * @psalm-property-read Collection<CountryRegion>  $regions
  *
- * @method static static query()
- *
- * @method Country published()
+ * @method self published()
  */
-class Country extends Model
+final class Country extends Model
 {
 ```
 
-You can see Psalm notation for relations here. Static call for `query()` is an «entrypoint» for query building process. You can put `query()` to any kind of base model if you want to use  them. 
-Also, `published()` is a form of scope annotation.
+You can see Psalm notation for relations/ro-properties here. Also, the method `published()` is a form of scope annotation.
