@@ -3,7 +3,7 @@
 namespace Illuminate\Database\Eloquent;
 
 /**
- * @template T
+ * @template T of Model
  * @mixin T
  */
 class Builder
@@ -24,6 +24,13 @@ class Builder
      * @return T
      */
     public function findOrFail($id, $columns = ['*']) {}
+
+    /**
+     * @param $id
+     * @param string[] $columns
+     * @psalm-return T
+     */
+    public function find($id, $columns = ['*']) {}
 
     /**
      * @param string[]   $columns
