@@ -4,11 +4,12 @@ namespace Illuminate\Database\Eloquent;
 
 /**
  * @template T
+ * @mixin T
  */
 class Builder
 {
     /**
-     * @return Builder<T>
+     * @return self<T>
      */
     public function getQuery(): Builder {}
 
@@ -47,4 +48,8 @@ class Builder
      * @return Builder<T>
      */
     public function where($column, $operator = null, $value = null, $boolean = 'and') {}
+
+    public function __call($name, $arguments) {}
+
+    public static function __callStatic($name, $arguments) {}
 }

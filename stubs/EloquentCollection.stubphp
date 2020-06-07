@@ -1,0 +1,17 @@
+<?php
+
+namespace Illuminate\Database\Eloquent;
+
+use ArrayAccess;
+use Illuminate\Support\Enumerable;
+
+/**
+ * @template T
+ *
+ * @template-implements ArrayAccess<array-key, T>
+ * @template-implements Enumerable<T>
+*/
+class Collection extends \Illuminate\Support\Collection implements ArrayAccess, Enumerable
+{
+
+}

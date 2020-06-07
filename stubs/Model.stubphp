@@ -4,12 +4,9 @@ namespace Illuminate\Database\Eloquent;
 
 use Illuminate\Database\Eloquent\Builder;
 
-/**
- * @template T
- */
 class Model
 {
-    /** @var bool */
+    /** @var bool|list<string> */
     public $timestamps;
 
     /** @var string */
@@ -35,43 +32,47 @@ class Model
     /** @param mixed $value */
     public function __set(string $name, $value): void {}
 
+    public function __call($method, $parameters) {}
+
+    public static function __callStatic($method, $parameters) {}
+
     /**
-     * @psalm-return Builder<T>
+     * @psalm-return Builder<static>
      */
     public static function whereId() {}
 
     /**
-     * @psalm-return Builder<T>
+     * @psalm-return Builder<static>
      */
     public static function newModelQuery() {}
 
     /**
-     * @psalm-return Builder<T>
+     * @psalm-return Builder<static>
      */
     public static function newQuery() {}
 
     /**
-     * @psalm-return T&Builder<T>
+     * @psalm-return Builder<static>
      */
     public static function query() {}
 
     /**
      * @param string[] $columns
-     * @psalm-return Collection<T>
+     * @psalm-return Collection<static>
      */
     public function get($columns = ['*']) {}
 
     /**
      * @param $id
      * @param string[] $columns
-     * @psalm-return T
+     * @psalm-return static
      */
     public function find($id, $columns = ['*']) {}
 
     /**
      * @param $id
      * @param string[] $columns
-     * @psalm-return Collection<T>
+     * @psalm-return static
      */
     public function findOrFail($id, $columns = ['*']) {}
 }
