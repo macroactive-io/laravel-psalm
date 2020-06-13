@@ -18,5 +18,6 @@ final class Plugin implements PluginEntryPointInterface
         $psalm->addStubFile($dir . '/stubs/EloquentCollection.stubphp');
         $psalm->addStubFile($dir . '/stubs/Model.stubphp');
         $psalm->addStubFile($dir . '/stubs/Builder.stubphp');
+        $psalm->addStubFile($dir . '/stubs/Paginator.stubphp');
     }
 }
