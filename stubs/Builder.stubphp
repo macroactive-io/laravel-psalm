@@ -36,6 +36,12 @@ class Builder
      * @param string[]   $columns
      * @return T
      */
+    public function first($columns = ['*']) {}
+
+    /**
+     * @param string[]   $columns
+     * @return T
+     */
     public function firstOrFail($columns = ['*']) {}
 
     /**
