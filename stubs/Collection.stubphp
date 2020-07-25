@@ -737,7 +737,7 @@ class Collection implements ArrayAccess, Enumerable
     public function add($item) {}
 
     /**
-     * @return static<T>
+     * @return self<T>
      */
     public function toBase() {}
 

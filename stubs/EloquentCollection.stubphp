@@ -4,6 +4,7 @@ namespace Illuminate\Database\Eloquent;
 
 use ArrayAccess;
 use Illuminate\Support\Enumerable;
+use \Illuminate\Support\Collection as BaseCollection;
 
 /**
  * @template T
@@ -11,7 +12,11 @@ use Illuminate\Support\Enumerable;
  * @template-implements ArrayAccess<array-key, T>
  * @template-implements Enumerable<T>
 */
-class Collection extends \Illuminate\Support\Collection implements ArrayAccess, Enumerable
+class Collection extends BaseCollection implements ArrayAccess, Enumerable
 {
+    /**
+     * @return BaseCollection<T>
+     */
+    public function toBase() {}
 
 }
