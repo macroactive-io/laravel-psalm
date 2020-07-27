@@ -2,6 +2,9 @@
 
 namespace Illuminate\Database\Eloquent;
 
+use Closure;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+
 /**
  * @template T of Model
  * @mixin T
@@ -54,6 +57,13 @@ class Builder
     public function whereHas($relation, Closure $callback = null, $operator = '>=', $count = 1) {}
 
     /**
+     * @param Builder|Closure|iterable $values
+     * @param 'and'|'or'               $boolean
+     * @return Builder<T>
+     */
+    public function whereIn(string $column, $values, string $boolean = 'and', bool $not = false) {}
+
+    /**
      * @param string|callable $column
      * @param string|null     $operator
      * @param mixed           $value
@@ -61,6 +71,25 @@ class Builder
      * @return Builder<T>
      */
     public function where($column, $operator = null, $value = null, $boolean = 'and') {}
+
+    /**
+     * @psalm-return Builder<T>
+     */
+    public function orderBy($column, $direction = 'asc') {}
+
+    /**
+     * @psalm-return Builder<T>
+     */
+    public function groupBy(...$groups) {}
+
+    /**
+     * @param  int|null  $perPage
+     * @param  array  $columns
+     * @param  string  $pageName
+     * @param  int|null  $page
+     * @return LengthAwarePaginator<T>
+     */
+    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null) {}
 
     public function __call($name, $arguments) {}
 

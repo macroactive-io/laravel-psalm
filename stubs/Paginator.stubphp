@@ -1,0 +1,26 @@
+<?php
+
+namespace Illuminate\Contracts\Pagination;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * @template T of Model
+ */
+interface Paginator
+{
+    /**
+     * Get all of the items being paginated.
+     *
+     * @return array<T>
+     */
+    public function items();
+}
+
+/**
+ * @template T of Model
+ * @extends Paginator<T>
+ */
+interface LengthAwarePaginator extends Paginator
+{
+}

@@ -65,14 +65,14 @@ class Model
     /**
      * @param $id
      * @param string[] $columns
-     * @psalm-return static
+     * @psalm-return $this
      */
     public function find($id, $columns = ['*']) {}
 
     /**
      * @param $id
      * @param string[] $columns
-     * @psalm-return static
+     * @psalm-return $this
      */
     public function findOrFail($id, $columns = ['*']) {}
 }
