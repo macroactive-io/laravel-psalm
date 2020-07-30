@@ -1,0 +1,106 @@
+<?php
+
+namespace Illuminate\Database\Eloquent\Concerns;
+
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\Relation;
+
+
+trait HasRelationships
+{
+    /**
+     * @param  string  $related
+     * @param  string|null  $foreignKey
+     * @param  string|null  $localKey
+     * @return HasOne<static>
+     */
+    public function hasOne($related, $foreignKey = null, $localKey = null) {}
+
+
+    /**
+     * Define a has-one-through relationship.
+     *
+     * @param  string  $related
+     * @param  string  $through
+     * @param  string|null  $firstKey
+     * @param  string|null  $secondKey
+     * @param  string|null  $localKey
+     * @param  string|null  $secondLocalKey
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneThrough
+     */
+    public function hasOneThrough($related, $through, $firstKey = null, $secondKey = null, $localKey = null, $secondLocalKey = null) {}
+
+    /**
+     * Define a polymorphic one-to-one relationship.
+     *
+     * @param  string  $related
+     * @param  string  $name
+     * @param  string|null  $type
+     * @param  string|null  $id
+     * @param  string|null  $localKey
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function morphOne($related, $name, $type = null, $id = null, $localKey = null) {}
+
+    /**
+     * @param  string  $related
+     * @param  string|null  $foreignKey
+     * @param  string|null  $ownerKey
+     * @param  string|null  $relation
+     * @return BelongsTo<static>
+     */
+    public function belongsTo($related, $foreignKey = null, $ownerKey = null, $relation = null) {}
+
+    /**
+     * @param  string|null  $name
+     * @param  string|null  $type
+     * @param  string|null  $id
+     * @param  string|null  $ownerKey
+     * @return MorphTo
+     */
+    public function morphTo($name = null, $type = null, $id = null, $ownerKey = null) {}
+
+    /**
+     * @param  string  $related
+     * @param  string|null  $foreignKey
+     * @param  string|null  $localKey
+     * @return HasMany<static>
+     */
+    public function hasMany($related, $foreignKey = null, $localKey = null) {}
+
+    /**
+     * @param  string  $related
+     * @param  string  $through
+     * @param  string|null  $firstKey
+     * @param  string|null  $secondKey
+     * @param  string|null  $localKey
+     * @param  string|null  $secondLocalKey
+     * @return HasManyThrough<static>
+     */
+    public function hasManyThrough($related, $through, $firstKey = null, $secondKey = null, $localKey = null, $secondLocalKey = null) {}
+
+    /**
+     * @param  string  $related
+     * @param  string  $name
+     * @param  string|null  $type
+     * @param  string|null  $id
+     * @param  string|null  $localKey
+     * @return MorphMany<static>
+     */
+    public function morphMany($related, $name, $type = null, $id = null, $localKey = null) {}
+
+
+    /** @return BelongsToMany<static> */
+    public function belongsToMany(string $related, ?string $table = null, ?string $foreignPivotKey = null, ?string $relatedPivotKey = null,
+                                  ?string $parentKey = null, ?string $relatedKey = null, ?string $relation = null) {}
+}

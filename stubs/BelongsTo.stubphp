@@ -1,0 +1,14 @@
+<?php
+
+namespace Illuminate\Database\Eloquent\Relations;
+
+use Illuminate\Database\Query\Builder;
+
+/**
+ * @template T
+ * @mixin Builder<T>
+ */
+class BelongsTo extends Relation
+{
+
+}
