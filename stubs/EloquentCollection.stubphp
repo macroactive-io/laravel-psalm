@@ -11,7 +11,8 @@ use \Illuminate\Support\Collection as BaseCollection;
  *
  * @template-implements ArrayAccess<array-key, T>
  * @template-implements Enumerable<T>
-*/
+ * @template-extends BaseCollection<T>
+ */
 class Collection extends BaseCollection implements ArrayAccess, Enumerable
 {
     /**

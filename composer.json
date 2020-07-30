@@ -16,7 +16,7 @@
   },
   "require": {
     "php": ">7.2",
-    "vimeo/psalm": ">3.11.5 || dev-master#e35fa0d"
+    "vimeo/psalm": ">=3.12.2"
   },
   "extra": {
     "psalm" : {

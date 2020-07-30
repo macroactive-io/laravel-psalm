@@ -91,6 +91,49 @@ class Builder
      */
     public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null) {}
 
+
+    /**
+     * @param  \Closure|array|string  $column
+     * @param  mixed|null  $operator
+     * @param  mixed|null  $value
+     * @return Builder<T>
+     */
+    public function orWhere($column, $operator = null, $value = null) {}
+
+    /**
+     * @param  string|array $columns
+     * @param  'and'|'or'   $boolean
+     * @return Builder<T>
+     */
+    public function whereNotNull($columns, $boolean = 'and') {}
+
+    /**
+     * @param  string|array $columns
+     * @param  'and'|'or'   $boolean
+     * @param  bool         $not
+     * @return Builder<T>
+     */
+    public function whereNull($columns, $boolean = 'and', $not = false) {}
+
+    /**
+     * @param  string|array $columns
+     * @return Builder<T>
+     */
+    public function orWhereNotNull($columns) {}
+
+    /**
+     * @param  string|string[]  $relations
+     * @return Builder<T>
+     */
+    public function with($relations) {}
+
+    /**
+     * @param  \Closure|array|string  $column
+     * @return Builder<T>
+     */
+    public function latest($column = null) {}
+
+
     public function __call($name, $arguments) {}
 
     public static function __callStatic($name, $arguments) {}
