@@ -133,34 +133,46 @@ class Builder
      */
     public function latest($column = null) {}
 
-    /** @return Builder<T> */
+    /**
+     * @param  array{0: string|int|DateTimeInterface, 1: string|int|DateTimeInterface} $values
+     * @return Builder<T>
+     */
     public function orWhereBetween(string $column, array $values) {}
 
-    /** @return Builder<T> */
+    /**
+     * @param  array{0: string|int|DateTimeInterface, 1: string|int|DateTimeInterface} $values
+     * @return Builder<T>
+     */
     public function whereBetween(string $column, array $values, string $boolean = 'and', bool $not = false) {}
 
     /**
-     * @param  mixed $values
+     * @param  iterable $values
      * @return Builder<T>
      */
     public function orWhereIn(string $column, $values, string $boolean = 'and', bool $not = false) {}
 
     /**
-     * @param  mixed $values
+     * @param  iterable $values
      * @return Builder<T>
      */
-    public function whereNotIn(string $column, array $values, string $boolean = 'and') {}
+    public function whereNotIn(string $column, $values, string $boolean = 'and') {}
 
     /**
-     * @param  mixed $values
+     * @param  iterable $values
      * @return Builder<T>
      */
-    public function orWhereNotIn(string $column, array $values) {}
+    public function orWhereNotIn(string $column, $values) {}
 
-    /** @return Builder<T> */
+    /**
+     * @param  array{0: string|int|DateTimeInterface, 1: string|int|DateTimeInterface} $values
+     * @return Builder<T>
+     */
     public function whereNotBetween(string $column, array $values, string $boolean = 'and') {}
 
-    /** @return Builder<T> */
+    /**
+     * @param  array{0: string|int|DateTimeInterface, 1: string|int|DateTimeInterface} $values
+     * @return Builder<T>
+     */
     public function orWhereNotBetween(string $column, array $values) {}
 
     public function __call($name, $arguments) {}
