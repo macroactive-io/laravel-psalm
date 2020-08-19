@@ -181,7 +181,7 @@ class Builder
   	 * @param  array  $bindings
      * @return Builder<T>
      */
-  	public function selectRaw($expression, array $bindings = []) {}
+  	public function selectRaw(string $expression, array $bindings = []) {}
 
     public function __call($name, $arguments) {}
 
