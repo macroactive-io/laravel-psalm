@@ -179,7 +179,7 @@ class Builder
     /**
      * @return Builder<T>
      */
-  	public function selectRaw(string $expression, array $bindings = []) {}
+    public function selectRaw(string $expression, array $bindings = []) {}
 
     public function __call($name, $arguments) {}
 
