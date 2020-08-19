@@ -176,6 +176,13 @@ class Builder
      */
     public function orWhereNotBetween(string $column, array $values) {}
 
+    /**
+  	 * @param  string $expression
+  	 * @param  array  $bindings
+     * @return Builder<T>
+     */
+  	public function selectRaw($expression, array $bindings = []) {}
+
     public function __call($name, $arguments) {}
 
     public static function __callStatic($name, $arguments) {}
