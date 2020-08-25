@@ -266,13 +266,7 @@ class Collection implements ArrayAccess, Enumerable
      */
     public function filter(callable $callback = null) {}
 
-    /**
-     * Get the first item from the collection passing the given truth test.
-     *
-     * @param callable|null $callback
-     * @param mixed         $default
-     * @return mixed
-     */
+    /** @return T */
     public function first(callable $callback = null, $default = null) {}
 
     /**
