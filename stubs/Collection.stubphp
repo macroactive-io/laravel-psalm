@@ -271,6 +271,7 @@ class Collection implements ArrayAccess, Enumerable
      *
      * @param callable|null $callback
      * @param mixed         $default
+     * @psalm-return T
      * @return mixed
      */
     public function first(callable $callback = null, $default = null) {}
