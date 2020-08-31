@@ -85,6 +85,7 @@ class Collection implements ArrayAccess, Enumerable
 
     public function whereInstanceOf($type) {}
 
+    /** @return T */
     public function firstWhere($key, $operator = null, $value = null) {}
 
     public function isNotEmpty() {}
