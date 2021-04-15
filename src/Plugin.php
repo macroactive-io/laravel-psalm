@@ -17,6 +17,7 @@ final class Plugin implements PluginEntryPointInterface
         $psalm->addStubFile($dir . '/stubs/BelongsToMany.stubphp');
         $psalm->addStubFile($dir . '/stubs/Builder.stubphp');
         $psalm->addStubFile($dir . '/stubs/Collection.stubphp');
+        $psalm->addStubFile($dir . '/stubs/Contracts.stubphp');
         $psalm->addStubFile($dir . '/stubs/EloquentCollection.stubphp');
         $psalm->addStubFile($dir . '/stubs/Enumerable.stubphp');
         $psalm->addStubFile($dir . '/stubs/HasMany.stubphp');

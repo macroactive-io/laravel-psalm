@@ -1,0 +1,44 @@
+<?php
+
+namespace Illuminate\Contracts\Container {
+    class Container
+    {
+        /**
+         * @template T of object
+         * @psalm-param class-string<T> $abstract
+         * @psalm-return T
+         */
+        public function make($abstract = null, array $parameters = []): object {}
+    }
+}
+
+namespace Illuminate\Container {
+    class Container
+    {
+        /**
+         * @template T of object
+         * @psalm-param class-string<T> $abstract
+         * @psalm-return T
+         */
+        public function make($abstract = null, array $parameters = []): object {}
+    }
+}
+
+namespace Psr\Container {
+    interface ContainerInterface
+    {
+        /**
+         * @template T of object
+         * @psalm-param class-string<T> $id
+         * @psalm-return T
+         */
+        public function get(string $id);
+    }
+}
+
+
+namespace Illuminate\Contracts\Translation {
+    class Translator {
+        public function get(string $key, array $replace = [], string $locale = null): string {}
+    }
+}
