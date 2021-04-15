@@ -25,7 +25,7 @@ namespace Illuminate\Contracts\Filesystem {
         public function directories(?string $directory = null, bool $recursive = false);
 
         /** @return string[] */
-        public function public function allDirectories(?string $directory = null);
+        public function allDirectories(?string $directory = null);
     }
 }
 
