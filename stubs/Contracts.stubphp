@@ -12,6 +12,23 @@ namespace Illuminate\Contracts\Container {
     }
 }
 
+namespace Illuminate\Contracts\Filesystem {
+    interface Filesystem
+    {
+        /** @return string[] */
+        public function files(?string $directory = null, bool $recursive = false);
+
+        /** @return string[] */
+        public function allFiles(?string $directory = null);
+
+        /** @return string[] */
+        public function directories(?string $directory = null, bool $recursive = false);
+
+        /** @return string[] */
+        public function public function allDirectories(?string $directory = null);
+    }
+}
+
 namespace Illuminate\Container {
     class Container
     {
