@@ -191,7 +191,7 @@ class Collection implements ArrayAccess, Enumerable
     /**
      * @param array-key $key
      * @param mixed $operator
-     * @param null|T $value
+     * @param string|int|bool $value
      */
     public function contains($key, $operator = null, $value = null): bool {}
 
