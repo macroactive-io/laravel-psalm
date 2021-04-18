@@ -15,17 +15,21 @@ use Illuminate\Support\Enumerable;
 */
 class Collection implements ArrayAccess, Enumerable
 {
-    /** @var array<T> */
-    protected $items = [];
-
     /** @param array<T> $items */
     public function __construct($items = []) {}
 
-    /** @return array<T> */
+    /**
+     * @psalm-mutation-free
+     * @return array<T>
+     */
     public function all() {}
 
-    public function toArray() {}
+    /**
+     * @psalm-mutation-free
+     */
+    public function toArray(): array {}
 
+    /** @return static<T> */
     public static function make($items = []) {}
 
     /**
@@ -43,12 +47,17 @@ class Collection implements ArrayAccess, Enumerable
 
     public function some($key, $operator = null, $value = null) {}
 
+    /** @psalm-mutation-free */
     public function containsStrict($key, $value = null) {}
 
     public function dd(...$args) {}
 
     public function dump() {}
 
+    /**
+     * @param callable(T, array-key): static<T>
+     * @return static<T>
+     */
     public function each(callable $callback) {}
 
     public function eachSpread(callable $callback) {}
@@ -86,14 +95,15 @@ class Collection implements ArrayAccess, Enumerable
     public function whereInstanceOf($type) {}
 
     /**
-    * @param  string  $key
-    * @param  mixed  $operator
-    * @param  mixed  $value
+    * @param  string|int  $key
+    * @param  mixed       $operator
+    * @param  mixed       $value
     * @return T
     */
     public function firstWhere($key, $operator = null, $value = null) {}
 
-    public function isNotEmpty() {}
+    /** @psalm-mutation-free */
+    public function isNotEmpty(): bool {}
 
     public function mapSpread(callable $callback) {}
 
@@ -103,8 +113,13 @@ class Collection implements ArrayAccess, Enumerable
 
     public function mapInto($class) {}
 
+    /**
+     * @psalm-mutation-free
+     * @param callable(T, array-key):bool|null $callback
+     */
     public function min($callback = null) {}
 
+    /** @psalm-mutation-free */
     public function max($callback = null) {}
 
     public function forPage($page, $perPage) {}
@@ -177,9 +192,8 @@ class Collection implements ArrayAccess, Enumerable
      * @param array-key $key
      * @param mixed $operator
      * @param null|T $value
-     * @return bool
      */
-    public function contains($key, $operator = null, $value = null) {}
+    public function contains($key, $operator = null, $value = null): bool {}
 
     /**
      * Cross join with the given lists, returning all possible permutations.
@@ -191,7 +205,7 @@ class Collection implements ArrayAccess, Enumerable
 
     /**
      * @psalm-param  iterable<T>  $items
-     * @psalm-return static<T>
+     * @return static<T>
      */
     public function diff($items) {}
 
@@ -206,7 +220,7 @@ class Collection implements ArrayAccess, Enumerable
      * Get the items in the collection whose keys and values are not present in the given items.
      *
      * @param mixed $items
-     * @return static
+     * @return static<T>
      */
     public function diffAssoc($items) {}
 
@@ -214,8 +228,8 @@ class Collection implements ArrayAccess, Enumerable
      * Get the items in the collection whose keys and values are not present in the given items, using the callback.
      *
      * @param mixed    $items
-     * @param callable $callback
-     * @return static
+     * @param callable(T, array-key):bool $callback
+     * @return static<T>
      */
     public function diffAssocUsing($items, callable $callback) {}
 
@@ -232,10 +246,9 @@ class Collection implements ArrayAccess, Enumerable
      * Get the items in the collection whose keys are not present in the given items, using the callback.
      *
      * @param mixed    $items
-     * @param callable $callback
+     * @param callable(T, array-key):bool $callback
      *
-     * @psalm-return static<T>
-     * @return static
+     * @return static<T>
      */
     public function diffKeysUsing($items, callable $callback) {}
 
@@ -259,20 +272,25 @@ class Collection implements ArrayAccess, Enumerable
     /**
      * Get all items except for those with the specified keys.
      *
-     * @param self|mixed $keys
-     * @return static
+     * @param iterable<T>|iterable<int> $keys
+     * @return static<T>
      */
     public function except($keys) {}
 
     /**
      * Run a filter over each of the items.
      *
-     * @param callable|null $callback
-     * @return static
+     * @param callable(T, array-key):bool|null $callback
+     * @psalm-mutation-free
+     * @return static<T>
      */
     public function filter(callable $callback = null) {}
 
-    /** @return T */
+    /**
+     * @param callable(T, array-key):bool|null $callback
+     * @psalm-mutation-free
+     * @return T
+     */
     public function first(callable $callback = null, $default = null) {}
 
     /**
@@ -294,7 +312,7 @@ class Collection implements ArrayAccess, Enumerable
      * Remove an item from the collection by key.
      *
      * @param string|array $keys
-     * @return self
+     * @return static<T>
      */
     public function forget($keys) {}
 
@@ -304,8 +322,8 @@ class Collection implements ArrayAccess, Enumerable
      * @param array-key $key
      * @param mixed $default
      *
-     * @psalm-return T
-     * @return mixed
+     * @psalm-mutation-free
+     * @return T
      */
     public function get($key, $default = null) {}
 
@@ -322,7 +340,7 @@ class Collection implements ArrayAccess, Enumerable
      * Key an associative array by a field or using a callback.
      *
      * @param callable|string $keyBy
-     * @return Collection<T>
+     * @return static<T>
      */
     public function keyBy($keyBy) {}
 
@@ -330,9 +348,9 @@ class Collection implements ArrayAccess, Enumerable
      * Determine if an item exists in the collection by key.
      *
      * @param mixed $key
-     * @return bool
+     * @psalm-mutation-free
      */
-    public function has($key) {}
+    public function has($key): bool {}
 
     /**
      * Concatenate values of a given key as a string.
@@ -347,7 +365,8 @@ class Collection implements ArrayAccess, Enumerable
      * Intersect the collection with the given items.
      *
      * @param mixed $items
-     * @return static
+     * @psalm-mutation-free
+     * @return static<T>
      */
     public function intersect($items) {}
 
@@ -361,10 +380,9 @@ class Collection implements ArrayAccess, Enumerable
 
     /**
      * Determine if the collection is empty or not.
-     *
-     * @return bool
+     * @psalm-mutation-free
      */
-    public function isEmpty() {}
+    public function isEmpty(): bool {}
 
     /**
      * Join all items from the collection using a string. The final items can use a separate glue string.
@@ -378,8 +396,7 @@ class Collection implements ArrayAccess, Enumerable
     /**
      * Get the keys of the collection items.
      *
-     * @return static
-     * @psalm-return static<array-key>
+     * @return static<array-key>
      */
     public function keys() {}
 
@@ -389,27 +406,25 @@ class Collection implements ArrayAccess, Enumerable
      * @param callable|null $callback
      * @param mixed         $default
      * @return mixed
-     * @psalm-return T
+     * @return T
      */
     public function last(callable $callback = null, $default = null) {}
 
     /**
      * Get the values of a given key.
      *
-     * @param string|array $value
+     * @param null|string|array $value
      * @param string|null  $key
-     * @return static
-     * @psalm-return static<T>
+     * @return static<T>
      */
     public function pluck($value, $key = null) {}
 
     /**
      * Run a map over each of the items.
      *
-     * @param callable $callback
-     * @return static
+     * @param callable(T, array-key):bool $callback
      */
-    public function map(callable $callback) {}
+    public function map(callable $callback): iterable {}
 
     /**
      * Run a dictionary map over the items.
@@ -426,16 +441,16 @@ class Collection implements ArrayAccess, Enumerable
      *
      * The callback should return an associative array with a single key/value pair.
      *
-     * @param callable $callback
-     * @return static
+     * @param callable(T, array-key):bool $callback
+     * @return static<T>
      */
     public function mapWithKeys(callable $callback) {}
 
     /**
      * Merge the collection with the given items.
      *
-     * @param mixed $items
-     * @return static
+     * @param iterable<T> $items
+     * @return static<T>
      */
     public function merge($items) {}
 
@@ -476,15 +491,14 @@ class Collection implements ArrayAccess, Enumerable
      * Get the items with the specified keys.
      *
      * @param mixed $keys
-     * @return static
+     * @return static<T>
      */
     public function only($keys) {}
 
     /**
      * Get and remove the last item from the collection.
      *
-     * @return mixed
-     * @psalm-return T
+     * @return T
      */
     public function pop() {}
 
@@ -503,7 +517,7 @@ class Collection implements ArrayAccess, Enumerable
      * Push an item onto the end of the collection.
      *
      * @param mixed $value
-     * @return self
+     * @return static<T>
      */
     public function push($value) {}
 
@@ -529,7 +543,7 @@ class Collection implements ArrayAccess, Enumerable
      *
      * @param mixed $key
      * @param mixed $value
-     * @return self
+     * @return static<T>
      */
     public function put($key, $value) {}
 
@@ -537,18 +551,16 @@ class Collection implements ArrayAccess, Enumerable
      * Get one or a specified number of items randomly from the collection.
      *
      * @param int|null $number
-     * @return static|mixed
-     *
-     * @throws \InvalidArgumentException
+     * @return ($number is int ? static<T> : T)
      */
     public function random($number = null) {}
 
     /**
      * Reduce the collection to a single value.
      *
-     * @param callable $callback
+     * @param callable(T, array-key):bool $callback
      * @param mixed    $initial
-     * @return mixed
+     * @return T
      */
     public function reduce(callable $callback, $initial = null) {}
 
@@ -556,7 +568,7 @@ class Collection implements ArrayAccess, Enumerable
      * Replace the collection items with the given items.
      *
      * @param mixed $items
-     * @return static
+     * @return static<T>
      */
     public function replace($items) {}
 
@@ -564,14 +576,14 @@ class Collection implements ArrayAccess, Enumerable
      * Recursively replace the collection items with the given items.
      *
      * @param mixed $items
-     * @return static
+     * @return static<T>
      */
     public function replaceRecursive($items) {}
 
     /**
      * Reverse items order.
      *
-     * @return static
+     * @return static<T>
      */
     public function reverse() {}
 
@@ -595,7 +607,7 @@ class Collection implements ArrayAccess, Enumerable
      * Shuffle the items in the collection.
      *
      * @param int $seed
-     * @return static
+     * @return static<T>
      */
     public function shuffle($seed = null) {}
 
@@ -603,16 +615,17 @@ class Collection implements ArrayAccess, Enumerable
      * Skip the first {$count} items.
      *
      * @param int $count
-     * @return static
+     * @return static<T>
      */
     public function skip($count) {}
 
     /**
      * Slice the underlying collection array.
      *
+     * @psalm-mutation-free
      * @param int $offset
-     * @param int $length
-     * @return static
+     * @param int|null $length
+     * @return static<T>
      */
     public function slice($offset, $length = null) {}
 
@@ -635,8 +648,8 @@ class Collection implements ArrayAccess, Enumerable
     /**
      * Sort through each item with a callback.
      *
-     * @param callable|null $callback
-     * @return static
+     * @param callable(T, T):int $callback
+     * @return static<T>
      */
     public function sort(callable $callback = null) {}
 
@@ -726,9 +739,9 @@ class Collection implements ArrayAccess, Enumerable
     public function pad($size, $value) {}
 
     /**
-     * @return int
+     * @psalm-mutation-free
      */
-    public function count() {}
+    public function count(): int {}
 
     /**
      * @param T $item
@@ -737,6 +750,7 @@ class Collection implements ArrayAccess, Enumerable
     public function add($item) {}
 
     /**
+     * @psalm-mutation-free
      * @return self<T>
      */
     public function toBase() {}
