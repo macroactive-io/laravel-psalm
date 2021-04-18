@@ -200,6 +200,9 @@ class Builder
      */
     public function whereDoesntHave(string $relation, Closure $callback = null) {}
 
+    /** @param string|int|null $id */
+    public function delete($id = null): int {}
+
     public function __call($name, $arguments) {}
 
     public static function __callStatic($name, $arguments) {}
