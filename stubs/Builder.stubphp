@@ -181,6 +181,25 @@ class Builder
      */
     public function selectRaw(string $expression, array $bindings = []) {}
 
+    /**
+    * @param DateTimeInterface|array<DateTimeInterface> $value
+    * @param 'and'|'or'     $boolean
+    * @return Builder<T>
+    */
+    public function whereDate(string $column, string $operator, $value, $boolean = 'and') {}
+
+    /**
+    * @param DateTimeInterface|array<DateTimeInterface> $value
+    * @return Builder<T>
+    */
+    public function orWhereDate(string $column, string $operator, $value) {}
+
+    /**
+     * @param closure(Builder<T> $builder): void $callback
+     * @return Builder<T>
+     */
+    public function whereDoesntHave(string $relation, Closure $callback = null) {}
+
     public function __call($name, $arguments) {}
 
     public static function __callStatic($name, $arguments) {}

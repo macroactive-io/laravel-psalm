@@ -415,7 +415,7 @@ class Collection implements ArrayAccess, Enumerable
      *
      * @param null|string|array $value
      * @param string|null  $key
-     * @return static<T>
+     * @return ($key is null ? static<int|string|bool> : ( $value is null ? static<T> : static<int|string|bool> )) static<T>
      */
     public function pluck($value, $key = null) {}
 
