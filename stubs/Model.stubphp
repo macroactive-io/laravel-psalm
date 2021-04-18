@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Model
 {
+    /** @use Concerns\HasRelationships */
+
     /** @var bool|list<string> */
     public $timestamps;
 

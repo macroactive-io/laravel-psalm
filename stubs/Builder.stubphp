@@ -203,6 +203,13 @@ class Builder
     /** @param string|int|null $id */
     public function delete($id = null): int {}
 
+    /**
+     * @template RelName of class-string
+     * @param  RelName $relation
+     * @return Relations\HasOne<RelName>
+     */
+    public function has($relation, string $operator = '>=', int $count = 1, string $boolean = 'and', Closure $callback = null) {}
+
     public function __call($name, $arguments) {}
 
     public static function __callStatic($name, $arguments) {}

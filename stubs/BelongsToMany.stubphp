@@ -4,10 +4,16 @@ namespace Illuminate\Database\Eloquent\Relations;
 
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 /**
  * @template T
  */
 class BelongsToMany extends Relation
 {
+    /**
+     * @param iterable<T>
+     * @return iterable<T>
+     */
+    public function saveMany($models, array $pivotAttributes = []) {}
 }

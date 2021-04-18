@@ -656,12 +656,12 @@ class Collection implements ArrayAccess, Enumerable
     /**
      * Sort the collection using the given callback.
      *
-     * @param callable|string $callback
+     * @param callable(T, T):int|string $callback
      * @param int             $options
      * @param bool            $descending
-     * @return static
+     * @return static<T>
      */
-    public function sortBy($callback, $options = SORT_REGULAR, $descending = false) {}
+    public function sortBy($callback, $options = SORT_REGULAR, bool $descending = false) {}
 
     /**
      * Sort the collection in descending order using the given callback.
