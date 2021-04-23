@@ -66,8 +66,8 @@ class Builder
 
     /**
      * @param string|callable $column
-     * @param string|null     $operator
-     * @param mixed           $value
+     * @param '='|'!='|'>='|'<='|'>'|'<'|'like'|'not like' $operator
+     * @param mixed $value
      * @param 'and'|'or'      $boolean
      * @return Builder<T>
      */
