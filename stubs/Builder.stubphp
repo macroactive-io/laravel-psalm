@@ -32,13 +32,13 @@ class Builder
     /**
      * @param $id
      * @param string[] $columns
-     * @psalm-return T
+     * @psalm-return T|null
      */
     public function find($id, $columns = ['*']) {}
 
     /**
      * @param string[]   $columns
-     * @return T
+     * @return T|null
      */
     public function first($columns = ['*']) {}
 
