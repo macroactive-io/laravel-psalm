@@ -30,9 +30,9 @@ class Builder
     public function findOrFail($id, $columns = ['*']) {}
 
     /**
-     * @param $id
+     * @param array|mixed $id
      * @param string[] $columns
-     * @psalm-return T|null
+     * @psalm-return ($id is array ? Collection<T> : (T|null))
      */
     public function find($id, $columns = ['*']) {}
 
