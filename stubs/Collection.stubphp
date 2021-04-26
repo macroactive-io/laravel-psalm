@@ -4,6 +4,7 @@ namespace Illuminate\Support;
 
 use ArrayAccess;
 use Illuminate\Support\Enumerable;
+use Illuminate\Support\Traits\EnumeratesValues;
 
 /**
  * Ideas of markup could be fetched from https://github.com/doctrine/collections/blob/master/lib/Doctrine/Common/Collections/Collection.php
@@ -15,6 +16,9 @@ use Illuminate\Support\Enumerable;
 */
 class Collection implements ArrayAccess, Enumerable
 {
+    /** @use EnumeratesValues<T> */
+    use EnumeratesValues;
+
     /** @param array<T> $items */
     public function __construct($items = []) {}
 
@@ -93,14 +97,6 @@ class Collection implements ArrayAccess, Enumerable
     public function whereNotInStrict($key, $values) {}
 
     public function whereInstanceOf($type) {}
-
-    /**
-    * @param  string|int  $key
-    * @param  mixed       $operator
-    * @param  mixed       $value
-    * @return T
-    */
-    public function firstWhere($key, $operator = null, $value = null) {}
 
     /** @psalm-mutation-free */
     public function isNotEmpty(): bool {}
@@ -289,7 +285,7 @@ class Collection implements ArrayAccess, Enumerable
     /**
      * @param callable(T, array-key):bool|null $callback
      * @psalm-mutation-free
-     * @return T
+     * @return T|null
      */
     public function first(callable $callback = null, $default = null) {}
 
