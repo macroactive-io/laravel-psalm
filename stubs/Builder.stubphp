@@ -37,6 +37,13 @@ class Builder
     public function find($id, $columns = ['*']) {}
 
     /**
+     * @param int[] $ids
+     * @param string[] $columns
+     * @psalm-return Collection<T>
+     */
+    public function findMany($ids, $columns = ['*']) {}
+
+    /**
      * @param string[]   $columns
      * @return T|null
      */
@@ -91,7 +98,6 @@ class Builder
      * @return LengthAwarePaginator<T>
      */
     public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null) {}
-
 
     /**
      * @param  \Closure|array|string  $column
@@ -209,6 +215,8 @@ class Builder
      * @return Relations\HasOne<RelName>
      */
     public function has($relation, string $operator = '>=', int $count = 1, string $boolean = 'and', Closure $callback = null) {}
+
+    public function count(string $columns = '*'): int {}
 
     public function __call($name, $arguments) {}
 
