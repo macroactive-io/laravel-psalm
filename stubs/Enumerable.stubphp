@@ -1404,9 +1404,11 @@ namespace Illuminate\Support\Traits {
          */
         public function random($number = null) {}
 
-        /** @param callable $callback
+        /**
+         * @template T
+         * @param callable(T, TValue, array-key):T $callback
          * @param mixed    $initial
-         * @return mixed
+         * @return T
          */
         public function reduce(callable $callback, $initial = null) {}
 
