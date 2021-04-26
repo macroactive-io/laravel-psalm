@@ -92,7 +92,6 @@ class Builder
      */
     public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null) {}
 
-
     /**
      * @param  \Closure|array|string  $column
      * @param  mixed|null  $operator
@@ -209,6 +208,11 @@ class Builder
      * @return Relations\HasOne<RelName>
      */
     public function has($relation, string $operator = '>=', int $count = 1, string $boolean = 'and', Closure $callback = null) {}
+
+    /**
+     * @return int
+     */
+    public function count() {}
 
     public function __call($name, $arguments) {}
 
