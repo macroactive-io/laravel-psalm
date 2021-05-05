@@ -49,20 +49,21 @@ namespace Illuminate\Database\Eloquent {
        */
       public function findMany($ids, $columns = ['*']) {}
 
-     /**
+      /**
       * @param string[] $columns
       * @return T
       */
-     public function firstOrFail($columns = ['*']) {}
+      public function firstOrFail($columns = ['*']) {}
+
+      public function increment(string $column, int $amount = 1, array $extra = []): void {}
+
+      public function decrement(string $column, int $amount = 1, array $extra = []): void {}
 
       /**
-       * @param string       $relation
-       * @param Closure|null $callback
-       * @param string       $operator
-       * @param int          $count
+       * @param callback(Builder):void|null $callback
        * @return $this
        */
-      public function whereHas($relation, Closure $callback = null, $operator = '>=', $count = 1) {}
+      public function whereHas(string $relation, ?Closure $callback = null, string $operator = '>=', int $count = 1) {}
 
       /**
        * @param Builder|Closure|iterable $values
@@ -123,10 +124,11 @@ namespace Illuminate\Database\Eloquent {
       public function orWhereNotNull($columns) {}
 
       /**
-       * @param  string|string[]  $relations
-       * @return $this
-       */
-      public function with($relations) {}
+     * @param  string|string[]  $relations
+     * @param  string|\Closure|null  $callback
+     * @return $this
+     */
+      public function with($relations, $callback = null) {}
 
       /**
        * @param  \Closure|array|string  $column
@@ -202,6 +204,12 @@ namespace Illuminate\Database\Eloquent {
 
       /** @param string|int|null $id */
       public function delete($id = null): int {}
+
+        /**
+         * @param  \Closure|string  $first
+         * @return $this
+         */
+        public function leftJoin(string $table, $first, ?string $operator = null, ?string $second = null) {}
 
       /**
        * @template RelName of class-string

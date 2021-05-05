@@ -39,6 +39,10 @@ namespace Illuminate\Database\Eloquent {
 
       public static function __callStatic($method, $parameters) {}
 
+      public function increment(string $column, int $amount = 1, array $extra = []): void {}
+
+      public function decrement(string $column, int $amount = 1, array $extra = []): void {}
+
       /**
        * @psalm-return Builder<static>
        */
