@@ -6,7 +6,7 @@ use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @template T
- * @mixin Builder<T>
+ * @template T of Model
+ * @extends HasOneOrMany<T>
  */
 class HasOne extends HasOneOrMany {}

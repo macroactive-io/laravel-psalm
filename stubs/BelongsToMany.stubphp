@@ -5,9 +5,12 @@ namespace Illuminate\Database\Eloquent\Relations;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Relations\Concerns\InteractsWithDictionary;
+use Illuminate\Database\Eloquent\Relations\Concerns\InteractsWithPivotTable;
 
 /**
  * @template T
+ * @extends Relation<T>
  */
 class BelongsToMany extends Relation
 {
@@ -16,4 +19,42 @@ class BelongsToMany extends Relation
      * @return iterable<T>
      */
     public function saveMany($models, array $pivotAttributes = []) {}
+
+    /** @return BelongsToMany<T> */
+    public function wherePivot($column, $operator = null, $value = null, string $boolean = 'and') {}
+
+    // Overriden by Taylor so have to copy-paste
+
+     /**
+      * @param string[] $columns
+      * @return T|null
+      */
+     public function first($columns = ['*']) {}
+
+     /**
+      * @param int|string $id
+      * @param string[]   $columns
+      * @return T
+      */
+     public function findOrFail($id, $columns = ['*']) {}
+
+     /**
+      * @param array|mixed $id
+      * @param string[] $columns
+      * @psalm-return ($id is array ? Collection<T> : (T|null))
+      */
+     public function find($id, $columns = ['*']) {}
+
+     /**
+      * @param int[] $ids
+      * @param string[] $columns
+      * @psalm-return Collection<T>
+      */
+     public function findMany($ids, $columns = ['*']) {}
+
+    /**
+     * @param string[] $columns
+     * @return T
+     */
+    public function firstOrFail($columns = ['*']) {}
 }

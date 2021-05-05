@@ -3,7 +3,6 @@
 namespace Illuminate\Support;
 
 use ArrayAccess;
-use Illuminate\Support\Enumerable;
 use Illuminate\Support\Traits\EnumeratesValues;
 
 /**

@@ -4,10 +4,11 @@ namespace Illuminate\Database\Eloquent\Relations;
 
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * @template T
- * @mixin Builder<T>
+ * @template T of Model
+ * @extends HasOneOrMany<T>
  */
 class HasMany extends HasOneOrMany
 {

@@ -7,7 +7,7 @@ use Illuminate\Support\Enumerable;
 use \Illuminate\Support\Collection as BaseCollection;
 
 /**
- * @template T
+ * @template T of Model
  *
  * @template-implements ArrayAccess<array-key, T>
  * @template-implements Enumerable<T>

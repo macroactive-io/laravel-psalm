@@ -682,11 +682,11 @@ namespace Illuminate\Support {
         public function random($number = null);
 
         /**
-         * Reduce the collection to a single value.
+         * @template T
          *
-         * @param callable $callback
+         * @param callable(T, TValue, array-key):T $callback
          * @param mixed    $initial
-         * @return mixed
+         * @return T
          */
         public function reduce(callable $callback, $initial = null);
 

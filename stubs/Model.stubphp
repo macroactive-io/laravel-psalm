@@ -92,6 +92,8 @@ namespace Illuminate\Database\Eloquent {
        */
       public function hasMany(string $related, ?string $foreignKey = null, ?string $localKey = null) {}
 
+      /** @return Builder<static> */
+      public static function on(?string $connection = null) {}
 
       /**
        * @template T of Model

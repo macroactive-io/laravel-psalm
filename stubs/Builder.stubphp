@@ -1,224 +1,313 @@
 <?php
 
-namespace Illuminate\Database\Eloquent;
+namespace Illuminate\Database\Eloquent {
+  use Closure;
+  use DateTimeInterface;
+  use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+  use Illuminate\Database\Concerns\BuildsQueries;
+  use Illuminate\Database\Query\Builder as QueryBuilder;
 
-use Closure;
-use DateTimeInterface;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-/**
- * @template T of Model
- * @mixin T
- */
-class Builder
-{
+  /**
+   * @template T of Model
+   * @mixin QueryBuilder<T>
+   * @mixin T
+   */
+  class Builder
+  {
+     /** @use BuildsQueries<T> */
+     use BuildsQueries;
+
+      /**
+       * @return self<T>
+       */
+      public function getQuery(): Builder {}
+
+      /**
+       * @return Collection<T>
+       */
+      public function get($columns = ['*']): Collection {}
+
+      /**
+       * @param int|string $id
+       * @param string[]   $columns
+       * @return T
+       */
+      public function findOrFail($id, $columns = ['*']) {}
+
+      /**
+       * @param array|mixed $id
+       * @param string[] $columns
+       * @psalm-return ($id is array ? Collection<T> : (T|null))
+       */
+      public function find($id, $columns = ['*']) {}
+
+      /**
+       * @param int[] $ids
+       * @param string[] $columns
+       * @psalm-return Collection<T>
+       */
+      public function findMany($ids, $columns = ['*']) {}
+
+     /**
+      * @param string[] $columns
+      * @return T
+      */
+     public function firstOrFail($columns = ['*']) {}
+
+      /**
+       * @param string       $relation
+       * @param Closure|null $callback
+       * @param string       $operator
+       * @param int          $count
+       * @return $this
+       */
+      public function whereHas($relation, Closure $callback = null, $operator = '>=', $count = 1) {}
+
+      /**
+       * @param Builder|Closure|iterable $values
+       * @param 'and'|'or'               $boolean
+       * @return $this
+       */
+      public function whereIn(string $column, $values, string $boolean = 'and', bool $not = false) {}
+
+      /**
+       * @param string|callable $column
+       * @param '='|'!='|'>='|'<='|'>'|'<'|'like'|'not like' $operator
+       * @param mixed $value
+       * @param 'and'|'or'      $boolean
+       * @return $this
+       */
+      public function where($column, $operator = null, $value = null, $boolean = 'and') {}
+
+      /**
+       * @psalm-return $this
+       */
+      public function orderBy($column, $direction = 'asc') {}
+
+      /** @return $this */
+      public function orderByRaw($sql, $bindings = []) {}
+
+      /**
+       * @psalm-return $this
+       */
+      public function groupBy(...$groups) {}
+
+      /**
+       * @param  \Closure|array|string  $column
+       * @param  mixed|null  $operator
+       * @param  mixed|null  $value
+       * @return $this
+       */
+      public function orWhere($column, $operator = null, $value = null) {}
+
+      /**
+       * @param  string|array $columns
+       * @param  'and'|'or'   $boolean
+       * @return $this
+       */
+      public function whereNotNull($columns, $boolean = 'and') {}
+
+      /**
+       * @param  string|array $columns
+       * @param  'and'|'or'   $boolean
+       * @param  bool         $not
+       * @return $this
+       */
+      public function whereNull($columns, $boolean = 'and', $not = false) {}
+
+      /**
+       * @param  string|array $columns
+       * @return $this
+       */
+      public function orWhereNotNull($columns) {}
+
+      /**
+       * @param  string|string[]  $relations
+       * @return $this
+       */
+      public function with($relations) {}
+
+      /**
+       * @param  \Closure|array|string  $column
+       * @return $this
+       */
+      public function latest($column = null) {}
+
+      /**
+       * @param  array{0: string|int|DateTimeInterface, 1: string|int|DateTimeInterface} $values
+       * @return $this
+       */
+      public function orWhereBetween(string $column, array $values) {}
+
+      /**
+       * @param  array{0: string|int|DateTimeInterface, 1: string|int|DateTimeInterface} $values
+       * @return $this
+       */
+      public function whereBetween(string $column, array $values, string $boolean = 'and', bool $not = false) {}
+
+      /**
+       * @param  iterable $values
+       * @return $this
+       */
+      public function orWhereIn(string $column, $values, string $boolean = 'and', bool $not = false) {}
+
+      /**
+       * @param  iterable $values
+       * @return $this
+       */
+      public function whereNotIn(string $column, $values, string $boolean = 'and') {}
+
+      /**
+       * @param  iterable $values
+       * @return $this
+       */
+      public function orWhereNotIn(string $column, $values) {}
+
+      /**
+       * @param  array{0: string|int|DateTimeInterface, 1: string|int|DateTimeInterface} $values
+       * @return $this
+       */
+      public function whereNotBetween(string $column, array $values, string $boolean = 'and') {}
+
+      /**
+       * @param  array{0: string|int|DateTimeInterface, 1: string|int|DateTimeInterface} $values
+       * @return $this
+       */
+      public function orWhereNotBetween(string $column, array $values) {}
+
+      /**
+       * @return $this
+       */
+      public function selectRaw(string $expression, array $bindings = []) {}
+
+      /**
+      * @param DateTimeInterface|array<DateTimeInterface> $value
+      * @param 'and'|'or'     $boolean
+      * @return $this
+      */
+      public function whereDate(string $column, string $operator, $value, $boolean = 'and') {}
+
+      /**
+      * @param DateTimeInterface|array<DateTimeInterface> $value
+      * @return $this
+      */
+      public function orWhereDate(string $column, string $operator, $value) {}
+
+      /**
+       * @param closure($this $builder): void $callback
+       * @return $this
+       */
+      public function whereDoesntHave(string $relation, Closure $callback = null) {}
+
+      /** @param string|int|null $id */
+      public function delete($id = null): int {}
+
+      /**
+       * @template RelName of class-string
+       * @param  RelName $relation
+       * @return Relations\HasOne<RelName>
+       */
+      public function has($relation, string $operator = '>=', int $count = 1, string $boolean = 'and', Closure $callback = null) {}
+
+      public function count(string $columns = '*'): int {}
+
+      public function __call($name, $arguments) {}
+
+      public static function __callStatic($name, $arguments) {}
+     /**
+      * @param  string[] $columns
+      * @return LengthAwarePaginator<T>
+      */
+     public function paginate(?int $perPage = null, array $columns = ['*'], string $pageName = 'page', ?int $page = null) {}
+  }
+}
+
+namespace Illuminate\Database\Query {
+
+    use Closure;
+    use DateTimeInterface;
+    use Illuminate\Contracts\Support\Arrayable;
+    use Illuminate\Database\Concerns\BuildsQueries;
+    use Illuminate\Database\Concerns\ExplainsQueries;
+    use Illuminate\Database\ConnectionInterface;
+    use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+    use Illuminate\Database\Eloquent\Relations\Relation;
+    use Illuminate\Pagination\Paginator;
+    use Illuminate\Support\Arr;
+    use Illuminate\Support\Collection;
+    use Illuminate\Support\LazyCollection;
+    use Illuminate\Support\Str;
+    use Illuminate\Support\Traits\ForwardsCalls;
+    use Illuminate\Support\Traits\Macroable;
+    use InvalidArgumentException;
+    use RuntimeException;
+
     /**
-     * @return self<T>
+     * @template T of object
+     * @use BuildsQueries<T>
      */
-    public function getQuery(): Builder {}
+    class Builder {
+    }
+}
+
+namespace Illuminate\Database\Concerns {
+  use Illuminate\Pagination\LengthAwarePaginator;
+  use Illuminate\Support\Collection;
+
+  /**
+   * @template T of object
+   */
+  trait BuildsQueries {
 
     /**
+     * @param callable(T $item) $callback
      * @return Collection<T>
      */
-    public function get($columns = ['*']): Collection {}
+    public function chunkMap(callable $callback, int $count = 1000) {}
 
     /**
-     * @param int|string $id
-     * @param string[]   $columns
-     * @return T
+     * @param callable(T $value, array-key $key) $callback
      */
-    public function findOrFail($id, $columns = ['*']) {}
+    public function each(callable $callback, int $count = 1000): bool {}
 
-    /**
-     * @param array|mixed $id
-     * @param string[] $columns
-     * @psalm-return ($id is array ? Collection<T> : (T|null))
-     */
-    public function find($id, $columns = ['*']) {}
+    /** @return Collection<T> */
+    public function lazy(int $chunkSize = 1000) {}
 
-    /**
-     * @param int[] $ids
-     * @param string[] $columns
-     * @psalm-return Collection<T>
-     */
-    public function findMany($ids, $columns = ['*']) {}
+    /** @return Collection<T> */
+    public function lazyById(int $chunkSize = 1000, ?string $column = null, ?string $alias = null) {}
 
-    /**
-     * @param string[]   $columns
-     * @return T|null
-     */
-    public function first($columns = ['*']) {}
+     /**
+      * @param string[] $columns
+      * @return T|null
+      */
+     public function first($columns = ['*']) {}
 
-    /**
-     * @param string[]   $columns
-     * @return T
-     */
-    public function firstOrFail($columns = ['*']) {}
+     /**
+      * @param string[] $columns
+      * @return T|null
+      */
+     public function sole($columns = ['*']) {}
 
-    /**
-     * @param string       $relation
-     * @param Closure|null $callback
-     * @param string       $operator
-     * @param int          $count
-     * @return Builder<T>
-     */
-    public function whereHas($relation, Closure $callback = null, $operator = '>=', $count = 1) {}
+     /**
+      * @template ARG
+      * @param  ARG    $value
+      * @param  callable($this, ARG) $callback
+      * @param  callable($this, ARG)|null  $default
+      * @return $this|mixed
+      */
+     public function when($value, $callback, $default = null) {}
 
-    /**
-     * @param Builder|Closure|iterable $values
-     * @param 'and'|'or'               $boolean
-     * @return Builder<T>
-     */
-    public function whereIn(string $column, $values, string $boolean = 'and', bool $not = false) {}
+     /**
+      * @param  callable($this, true) $callback
+      * @return $this
+      */
+     public function tap($callback) {}
 
-    /**
-     * @param string|callable $column
-     * @param '='|'!='|'>='|'<='|'>'|'<'|'like'|'not like' $operator
-     * @param mixed $value
-     * @param 'and'|'or'      $boolean
-     * @return Builder<T>
-     */
-    public function where($column, $operator = null, $value = null, $boolean = 'and') {}
-
-    /**
-     * @psalm-return Builder<T>
-     */
-    public function orderBy($column, $direction = 'asc') {}
-
-    /**
-     * @psalm-return Builder<T>
-     */
-    public function groupBy(...$groups) {}
-
-    /**
-     * @param  int|null  $perPage
-     * @param  array  $columns
-     * @param  string  $pageName
-     * @param  int|null  $page
-     * @return LengthAwarePaginator<T>
-     */
-    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null) {}
-
-    /**
-     * @param  \Closure|array|string  $column
-     * @param  mixed|null  $operator
-     * @param  mixed|null  $value
-     * @return Builder<T>
-     */
-    public function orWhere($column, $operator = null, $value = null) {}
-
-    /**
-     * @param  string|array $columns
-     * @param  'and'|'or'   $boolean
-     * @return Builder<T>
-     */
-    public function whereNotNull($columns, $boolean = 'and') {}
-
-    /**
-     * @param  string|array $columns
-     * @param  'and'|'or'   $boolean
-     * @param  bool         $not
-     * @return Builder<T>
-     */
-    public function whereNull($columns, $boolean = 'and', $not = false) {}
-
-    /**
-     * @param  string|array $columns
-     * @return Builder<T>
-     */
-    public function orWhereNotNull($columns) {}
-
-    /**
-     * @param  string|string[]  $relations
-     * @return Builder<T>
-     */
-    public function with($relations) {}
-
-    /**
-     * @param  \Closure|array|string  $column
-     * @return Builder<T>
-     */
-    public function latest($column = null) {}
-
-    /**
-     * @param  array{0: string|int|DateTimeInterface, 1: string|int|DateTimeInterface} $values
-     * @return Builder<T>
-     */
-    public function orWhereBetween(string $column, array $values) {}
-
-    /**
-     * @param  array{0: string|int|DateTimeInterface, 1: string|int|DateTimeInterface} $values
-     * @return Builder<T>
-     */
-    public function whereBetween(string $column, array $values, string $boolean = 'and', bool $not = false) {}
-
-    /**
-     * @param  iterable $values
-     * @return Builder<T>
-     */
-    public function orWhereIn(string $column, $values, string $boolean = 'and', bool $not = false) {}
-
-    /**
-     * @param  iterable $values
-     * @return Builder<T>
-     */
-    public function whereNotIn(string $column, $values, string $boolean = 'and') {}
-
-    /**
-     * @param  iterable $values
-     * @return Builder<T>
-     */
-    public function orWhereNotIn(string $column, $values) {}
-
-    /**
-     * @param  array{0: string|int|DateTimeInterface, 1: string|int|DateTimeInterface} $values
-     * @return Builder<T>
-     */
-    public function whereNotBetween(string $column, array $values, string $boolean = 'and') {}
-
-    /**
-     * @param  array{0: string|int|DateTimeInterface, 1: string|int|DateTimeInterface} $values
-     * @return Builder<T>
-     */
-    public function orWhereNotBetween(string $column, array $values) {}
-
-    /**
-     * @return Builder<T>
-     */
-    public function selectRaw(string $expression, array $bindings = []) {}
-
-    /**
-    * @param DateTimeInterface|array<DateTimeInterface> $value
-    * @param 'and'|'or'     $boolean
-    * @return Builder<T>
-    */
-    public function whereDate(string $column, string $operator, $value, $boolean = 'and') {}
-
-    /**
-    * @param DateTimeInterface|array<DateTimeInterface> $value
-    * @return Builder<T>
-    */
-    public function orWhereDate(string $column, string $operator, $value) {}
-
-    /**
-     * @param closure(Builder<T> $builder): void $callback
-     * @return Builder<T>
-     */
-    public function whereDoesntHave(string $relation, Closure $callback = null) {}
-
-    /** @param string|int|null $id */
-    public function delete($id = null): int {}
-
-    /**
-     * @template RelName of class-string
-     * @param  RelName $relation
-     * @return Relations\HasOne<RelName>
-     */
-    public function has($relation, string $operator = '>=', int $count = 1, string $boolean = 'and', Closure $callback = null) {}
-
-    public function count(string $columns = '*'): int {}
-
-    public function __call($name, $arguments) {}
-
-    public static function __callStatic($name, $arguments) {}
+     /**
+      * @param  string[] $columns
+      * @return LengthAwarePaginator<T>
+      */
+     public function paginate(?int $perPage = null, array $columns = ['*'], string $pageName = 'page', ?int $page = null) {}
+  }
 }
