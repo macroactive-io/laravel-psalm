@@ -89,6 +89,9 @@ namespace Illuminate\Database\Eloquent {
       /** @return $this */
       public function orderByRaw($sql, $bindings = []) {}
 
+      // have to copypaste as mixin on mixin doesn't work
+      public function exists(): bool {}
+
       /**
        * @psalm-return $this
        */
@@ -135,6 +138,12 @@ namespace Illuminate\Database\Eloquent {
        * @return $this
        */
       public function latest($column = null) {}
+
+      /**
+       * @param string|int $id
+       * @psalm-return $this
+       */
+      public static function whereId($id) {}
 
       /**
        * @param  array{0: string|int|DateTimeInterface, 1: string|int|DateTimeInterface} $values

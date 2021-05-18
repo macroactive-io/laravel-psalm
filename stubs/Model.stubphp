@@ -46,11 +46,6 @@ namespace Illuminate\Database\Eloquent {
       /**
        * @psalm-return Builder<static>
        */
-      public static function whereId() {}
-
-      /**
-       * @psalm-return Builder<static>
-       */
       public static function newModelQuery() {}
 
       /**
