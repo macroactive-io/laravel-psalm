@@ -983,10 +983,11 @@ namespace Illuminate\Support\Traits {
          */
         public static function unwrap($value) {}
 
-        /** @return array<TValue>
-         * @psalm-return array<TValue>
-         */
+        /** @return array<TValue> */
         public function all() {}
+
+        /** @return array<TValue> */
+        public function toArray() {}
 
         /**
          * Alias for the "avg" method.

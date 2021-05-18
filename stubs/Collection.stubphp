@@ -27,11 +27,6 @@ class Collection implements ArrayAccess, Enumerable
      */
     public function all() {}
 
-    /**
-     * @psalm-mutation-free
-     */
-    public function toArray(): array {}
-
     /** @return static<T> */
     public static function make($items = []) {}
 
@@ -415,9 +410,9 @@ class Collection implements ArrayAccess, Enumerable
     public function pluck($value, $key = null) {}
 
     /**
-     * Run a map over each of the items.
-     *
-     * @param callable(T, array-key):bool $callback
+     * @template TValue
+     * @param callable(T, array-key):TValue $callback
+     * @return static<TValue>
      */
     public function map(callable $callback): iterable {}
 
@@ -432,12 +427,9 @@ class Collection implements ArrayAccess, Enumerable
     public function mapToDictionary(callable $callback) {}
 
     /**
-     * Run an associative map over each of the items.
-     *
-     * The callback should return an associative array with a single key/value pair.
-     *
-     * @param callable(T, array-key):bool $callback
-     * @return static<T>
+     * @template TValue
+     * @param callable(T, array-key):TValue $callback
+     * @return static<TValue>
      */
     public function mapWithKeys(callable $callback) {}
 
