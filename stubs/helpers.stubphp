@@ -1,0 +1,4 @@
+<?php
+
+/** @return never  */
+function dd(...$vars): void {}

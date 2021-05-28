@@ -27,5 +27,6 @@ final class Plugin implements PluginEntryPointInterface
         $psalm->addStubFile($dir . '/stubs/HasRelationships.stubphp');
         $psalm->addStubFile($dir . '/stubs/Model.stubphp');
         $psalm->addStubFile($dir . '/stubs/Paginator.stubphp');
+        $psalm->addStubFile($dir . '/stubs/helpers.stubphp');
     }
 }
