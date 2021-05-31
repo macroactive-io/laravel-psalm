@@ -1,0 +1,40 @@
+<?php
+
+namespace Illuminate\Console {
+
+    use Symfony\Component\Console\Input\InputInterface;
+    use Symfony\Component\Console\Output\OutputInterface;
+
+    class Command {
+        /** @psalm-suppress PropertyNotSetInConstructor */
+        protected InputInterface $input;
+        /** @psalm-suppress PropertyNotSetInConstructor */
+        protected OutputInterface $output;
+        /** @psalm-suppress PropertyNotSetInConstructor */
+        protected \Illuminate\Contracts\Foundation\Application $laravel;
+
+        /**
+         * @var string
+         * @psalm-suppress PropertyNotSetInConstructor
+         */
+        protected $signature;
+
+        /**
+         * @var string
+         * @psalm-suppress PropertyNotSetInConstructor
+         */
+        protected $name;
+
+        /**
+         * @var null|string
+         * @psalm-suppress PropertyNotSetInConstructor
+         */
+        protected $description;
+
+        /** @psalm-suppress PropertyNotSetInConstructor */
+        protected ?string $help;
+
+        /** @psalm-suppress PropertyNotSetInConstructor */
+        protected bool $hidden;
+    }
+}
