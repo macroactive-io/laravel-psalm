@@ -43,6 +43,11 @@ use JsonSerializable;
    * @template-implements IteratorAggregate<array-key,T>
    * @template-implements LengthAwarePaginatorContract<T>
    */
-  class LengthAwarePaginator extends AbstractPaginator implements Arrayable, ArrayAccess, Countable, IteratorAggregate, Jsonable, JsonSerializable, LengthAwarePaginatorContract
-  {}
+  class LengthAwarePaginator implements Arrayable, ArrayAccess, Countable, IteratorAggregate, Jsonable, JsonSerializable, LengthAwarePaginatorContract
+  {
+        /**
+         * @return array<T>
+         */
+        public function items() {}
+  }
 }

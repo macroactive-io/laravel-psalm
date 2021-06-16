@@ -249,11 +249,11 @@ namespace Illuminate\Database\Query {
      * @use BuildsQueries<T>
      */
     class Builder {
-     /**
-      * @param  string[] $columns
-      * @return LengthAwarePaginator<T>
-      */
-     public function paginate(?int $perPage = null, array $columns = ['*'], string $pageName = 'page', ?int $page = null) {}
+      /**
+       * @param  string[] $columns
+       * @return LengthAwarePaginator<T>
+       */
+      public function paginate(?int $perPage = null, array $columns = ['*'], string $pageName = 'page', ?int $page = null) {}
     }
 }
 

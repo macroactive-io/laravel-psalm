@@ -2,3 +2,10 @@
 
 /** @return never  */
 function dd(...$vars): void {}
+
+/**
+ * @template T
+ * @param T $default
+ * @return (T is string ? string : (T is int ? int : (T is bool ? bool : T)))
+ */
+function env(string $key, $default = null) {}
