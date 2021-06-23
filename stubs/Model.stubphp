@@ -12,7 +12,7 @@ namespace Illuminate\Database\Eloquent {
       /** @var bool|list<string> */
       public $timestamps;
 
-      /** @var string */
+      /** @var ?string */
       protected $connection;
 
       /** @var string */
