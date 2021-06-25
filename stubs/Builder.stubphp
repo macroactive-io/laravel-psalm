@@ -6,7 +6,7 @@ namespace Illuminate\Database\Eloquent {
   use Illuminate\Pagination\LengthAwarePaginator;
   use Illuminate\Database\Concerns\BuildsQueries;
   use Illuminate\Database\Query\Builder as QueryBuilder;
-
+  use Illuminate\Contracts\Support\Arrayable;
 
   /**
    * @template T of Model
@@ -66,8 +66,8 @@ namespace Illuminate\Database\Eloquent {
       public function whereHas(string $relation, ?Closure $callback = null, string $operator = '>=', int $count = 1) {}
 
       /**
-       * @param Builder|Closure|iterable $values
-       * @param 'and'|'or'               $boolean
+       * @param Builder|QueryBuilder|Closure|Arrayable|array $values
+       * @param 'and'|'or'                         $boolean
        * @return $this
        */
       public function whereIn(string $column, $values, string $boolean = 'and', bool $not = false) {}
@@ -158,19 +158,19 @@ namespace Illuminate\Database\Eloquent {
       public function whereBetween(string $column, array $values, string $boolean = 'and', bool $not = false) {}
 
       /**
-       * @param  iterable $values
+       * @param Builder|QueryBuilder|Closure|Arrayable|array $values
        * @return $this
        */
       public function orWhereIn(string $column, $values, string $boolean = 'and', bool $not = false) {}
 
       /**
-       * @param  iterable $values
+       * @param Builder|QueryBuilder|Closure|Arrayable|array $values
        * @return $this
        */
       public function whereNotIn(string $column, $values, string $boolean = 'and') {}
 
       /**
-       * @param  iterable $values
+       * @param Builder|QueryBuilder|Closure|Arrayable|array $values
        * @return $this
        */
       public function orWhereNotIn(string $column, $values) {}

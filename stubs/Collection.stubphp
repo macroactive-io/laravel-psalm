@@ -179,7 +179,7 @@ class Collection implements ArrayAccess, Enumerable
     public function collapse() {}
 
     /**
-     * @param array-key $key
+     * @param array-key|callable(T, array-key):bool $key
      * @param mixed $operator
      * @param string|int|bool $value
      */
