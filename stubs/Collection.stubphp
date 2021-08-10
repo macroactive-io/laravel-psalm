@@ -92,7 +92,10 @@ class Collection implements ArrayAccess, Enumerable
 
     public function whereInstanceOf($type) {}
 
-    /** @psalm-mutation-free */
+    /**
+     * @psalm-mutation-free
+     * @psalm-assert-if-true T $this->first()
+     */
     public function isNotEmpty(): bool {}
 
     public function mapSpread(callable $callback) {}
@@ -371,6 +374,7 @@ class Collection implements ArrayAccess, Enumerable
     /**
      * Determine if the collection is empty or not.
      * @psalm-mutation-free
+     * @psalm-assert-if-false T $this->first()
      */
     public function isEmpty(): bool {}
 
