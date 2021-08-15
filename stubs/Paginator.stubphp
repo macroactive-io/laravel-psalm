@@ -26,28 +26,26 @@ use Illuminate\Database\Eloquent\Model;
 
 namespace Illuminate\Pagination {
 
-use ArrayAccess;
-use Countable;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator as LengthAwarePaginatorContract;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
-use Illuminate\Support\Collection;
-use IteratorAggregate;
-use JsonSerializable;
+use Illuminate\Support\Enumerable;
+use Illuminate\Support\EnumeratesValues;
 
   /**
    * @template T
    *
-   * @template-implements ArrayAccess<array-key, T>
-   * @template-implements Arrayable<T>
-   * @template-implements IteratorAggregate<array-key,T>
+   * @template-implements Enumerable<T>
    * @template-implements LengthAwarePaginatorContract<T>
    */
-  class LengthAwarePaginator implements Arrayable, ArrayAccess, Countable, IteratorAggregate, Jsonable, JsonSerializable, LengthAwarePaginatorContract
+  class LengthAwarePaginator extends AbstractPaginator implements LengthAwarePaginatorContract, Enumerable
   {
+      /** @use EnumeratesValues<T> */
+      use EnumeratesValues;
+
         /**
          * @return array<T>
          */
         public function items() {}
+        /** @return \Iterator<T> */
+        public function getIterator() {}
   }
 }
