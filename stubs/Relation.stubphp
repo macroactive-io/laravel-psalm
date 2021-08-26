@@ -13,6 +13,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
  * A proper way of @ mixin Builder<T> doesn't work
  *
  * @use \Illuminate\Database\Concerns\BuildsQueries<T>
+ *  \Illuminate\Database\Eloquent\SoftDeletes
  */
 abstract class Relation
 {

@@ -14,12 +14,13 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Database\Eloquent\Model;
 
 trait HasRelationships
 {
     /**
-     * @template RelName of class-string
-     * @param  RelName $relation
+     * @template RelName of Model
+     * @param  class-string<RelName> $related
      * @param  string|null  $foreignKey
      * @param  string|null  $localKey
      * @return HasOne<RelName>
@@ -28,25 +29,25 @@ trait HasRelationships
 
 
     /**
-     * @template RelName of class-string
-     * @param  RelName $relation
+     * @template RelName of Model
+     * @param  class-string<RelName> $related
      * @return Relations\HasOneThrough<RelName>
      */
     public function hasOneThrough($related, string $through, string $firstKey = null, string $secondKey = null, string $localKey = null, string $secondLocalKey = null) {}
 
     /**
-     * @template RelName of class-string
-     * @param  RelName $relation
+     * @template RelName of Model
+     * @param  class-string<RelName> $related
      * @return Relations\MorphOne<RelName>
      */
     public function morphOne($related, string $name, string $type = null, string $id = null, string $localKey = null) {}
 
     /**
-     * @template RelName of class-string
-     * @param  RelName $relation
-     * @return BelongsTo<RelName>
+     * @template RelName of Model
+     * @param  class-string<RelName> $related
+     * @return BelongsTo<RelName>&static
      */
-    public function belongsTo($related, string $foreignKey = null, string $ownerKey = null, string $relation = null) {}
+    public function belongsTo(string $related, string $foreignKey = null, string $ownerKey = null, string $relation = null) {}
 
     /**
      * @param  string|null  $name
@@ -58,8 +59,8 @@ trait HasRelationships
     public function morphTo($name = null, $type = null, $id = null, $ownerKey = null) {}
 
     /**
-     * @template RelName of class-string
-     * @param  RelName $relation
+     * @template RelName of Model
+     * @param  class-string<RelName> $related
      * @param  string|null  $foreignKey
      * @param  string|null  $localKey
      * @return HasMany<RelName>
@@ -67,30 +68,32 @@ trait HasRelationships
     public function hasMany($related, $foreignKey = null, $localKey = null) {}
 
     /**
-     * @param  string  $related
+     * @template RelName of Model
+     * @param  class-string<RelName> $related
      * @param  string  $through
      * @param  string|null  $firstKey
      * @param  string|null  $secondKey
      * @param  string|null  $localKey
      * @param  string|null  $secondLocalKey
-     * @return HasManyThrough<static>
+     * @return HasManyThrough<RelName>
      */
     public function hasManyThrough($related, $through, $firstKey = null, $secondKey = null, $localKey = null, $secondLocalKey = null) {}
 
     /**
-     * @param  string  $related
+     * @template RelName of Model
+     * @param  class-string<RelName> $related
      * @param  string  $name
      * @param  string|null  $type
      * @param  string|null  $id
      * @param  string|null  $localKey
-     * @return MorphMany<static>
+     * @return MorphMany<RelName>
      */
     public function morphMany($related, $name, $type = null, $id = null, $localKey = null) {}
 
 
     /**
-     * @template RelName of class-string
-     * @param  RelName $relation
+     * @template RelName of Model
+     * @param  class-string<RelName> $related
      * @return BelongsToMany<RelName>
      */
     public function belongsToMany(string $related, ?string $table = null, ?string $foreignPivotKey = null, ?string $relatedPivotKey = null,
