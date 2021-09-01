@@ -1,0 +1,19 @@
+<?php
+
+namespace Illuminate\Support;
+
+use Illuminate\Support\Traits\EnumeratesValues;
+
+/**
+ * @template T
+ *
+ * @template-implements Enumerable<T>
+*/
+class LazyCollection implements Enumerable
+{
+    /** @use EnumeratesValues<T> */
+    use EnumeratesValues;
+
+    /** @param mixed $source */
+    public function __construct($source = null) {}
+}
