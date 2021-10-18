@@ -31,14 +31,14 @@ namespace Illuminate\Database\Eloquent {
       public function get($columns = ['*']): Collection {}
 
       /**
-       * @param int|string $id
+       * @param int|string|numeric $id
        * @param string[]   $columns
        * @return T
        */
       public function findOrFail($id, $columns = ['*']) {}
 
       /**
-       * @param array|mixed $id
+       * @param array|int|numeric|string $id
        * @param string[] $columns
        * @psalm-return ($id is array ? Collection<T> : (T|null))
        */
