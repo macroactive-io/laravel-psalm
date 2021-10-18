@@ -217,6 +217,14 @@ namespace Illuminate\Database\Eloquent {
        */
       public function whereDoesntHave(string $relation, Closure $callback = null) {}
 
+      /**
+       * @param  string  $sql
+       * @param  mixed   $bindings
+       * @param  string  $boolean
+       * @return $this
+       */
+      public function whereRaw($sql, $bindings = [], $boolean = 'and') {}
+
       /** @param string|int|null $id */
       public function delete($id = null): int {}
 
