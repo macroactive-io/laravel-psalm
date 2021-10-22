@@ -54,7 +54,7 @@ namespace Illuminate\Database\Eloquent {
       public static function newQuery() {}
 
       /**
-       * @psalm-return Builder<static>
+       * @psalm-return Builder<$this>
        */
       public static function query() {}
 

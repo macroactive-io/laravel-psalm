@@ -26,21 +26,29 @@ use Illuminate\Database\Eloquent\Model;
 
 namespace Illuminate\Pagination {
 
+use ArrayAccess;
+use Countable;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator as LengthAwarePaginatorContract;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Enumerable;
-use Illuminate\Support\EnumeratesValues;
 
   /**
    * @template T
-   *
-   * @template-implements Enumerable<T>
-   * @template-implements LengthAwarePaginatorContract<T>
+   * @mixin \Illuminate\Support\Collection<T>
    */
-  class LengthAwarePaginator extends AbstractPaginator implements LengthAwarePaginatorContract, Enumerable
-  {
-      /** @use EnumeratesValues<T> */
-      use EnumeratesValues;
+  abstract class AbstractPaginator implements Htmlable {}
 
+  /**
+   * @template T of object
+   *
+   * @template-extends AbstractPaginator<T>
+   * @template-implements LengthAwarePaginatorContract<T>
+   * @template-implements Enumerable<T>
+   * @template-implements ArrayAccess<array-key, T>
+   */
+  class LengthAwarePaginator extends AbstractPaginator implements LengthAwarePaginatorContract, Enumerable, ArrayAccess, Countable
+  {
         /**
          * @return array<T>
          */
