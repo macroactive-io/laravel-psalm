@@ -76,6 +76,14 @@ namespace Illuminate\Database\Eloquent {
 
       /**
        * @param string|callable $column
+       * @param mixed           $value
+       * @param 'and'|'or'      $boolean
+       * @return $this
+       */
+      public function whereJsonContains($column, $value, $boolean = 'and', $not = false) {}
+
+      /**
+       * @param string|callable $column
        * @param '='|'!='|'>='|'<='|'>'|'<'|'like'|'not like' $operator
        * @param mixed $value
        * @param 'and'|'or'      $boolean
