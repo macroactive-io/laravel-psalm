@@ -19,5 +19,4 @@ class Collection extends BaseCollection implements ArrayAccess, Enumerable
      * @return BaseCollection<T>
      */
     public function toBase() {}
-
 }

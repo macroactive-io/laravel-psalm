@@ -1,0 +1,25 @@
+<?php
+
+namespace Illuminate\Support {
+    abstract class ServiceProvider {
+        /** @var array<interface-string, class-string>  */
+        public array $bindings;
+
+        /** @var array<class-string|interface-string, \Closure|class-string|null> */
+        public array $signletons;
+    }
+}
+namespace Illuminate\Foundation\Support\Providers {
+    use Illuminate\Support\ServiceProvider;
+
+    class EventServiceProvider extends ServiceProvider
+    {
+        /** @var array<class-string,class-string> */
+        protected $listen = [];
+
+        /** @var list<class-string> */
+        protected $subscribe = [];
+    }
+}
+
+
