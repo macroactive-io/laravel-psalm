@@ -9,17 +9,16 @@ namespace Illuminate\Support {
         public array $signletons;
     }
 }
+
 namespace Illuminate\Foundation\Support\Providers {
     use Illuminate\Support\ServiceProvider;
 
     class EventServiceProvider extends ServiceProvider
     {
-        /** @var array<class-string,class-string> */
+        /** @var array<class-string,list<class-string>> $listen */
         protected $listen = [];
 
-        /** @var list<class-string> */
+        /** @var list<class-string> $subscribe */
         protected $subscribe = [];
     }
 }
-
-
