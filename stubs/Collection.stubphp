@@ -138,7 +138,7 @@ class Collection implements ArrayAccess, Enumerable
 
     /**
      * Get an iterator for the items.
-     *
+     * @psalm-mutation-free
      * @return \ArrayIterator<T>
      */
     public function getIterator() {}
