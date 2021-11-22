@@ -41,6 +41,7 @@ use Illuminate\Support\Enumerable;
 
   /**
    * @template T of object
+   * @mixin \Illuminate\Support\Collection<T>
    *
    * @template-extends AbstractPaginator<T>
    * @template-implements LengthAwarePaginatorContract<T>
@@ -49,11 +50,22 @@ use Illuminate\Support\Enumerable;
    */
   class LengthAwarePaginator extends AbstractPaginator implements LengthAwarePaginatorContract, Enumerable, ArrayAccess, Countable
   {
-        /**
-         * @return array<T>
-         */
-        public function items() {}
-        /** @return \Iterator<T> */
-        public function getIterator() {}
+      /**
+       * @param callable(T, array-key):bool|null $callback
+       * @psalm-mutation-free
+       * @return $this
+       */
+      public function filter(callable $callback = null) {}
+
+      /**
+       * @return array<T>
+       */
+      public function items() {}
+
+      /**
+       * @psalm-mutation-free
+       * @return \Iterator<T>
+       */
+      public function getIterator() {}
   }
 }

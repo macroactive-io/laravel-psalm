@@ -30,7 +30,7 @@ namespace Illuminate\Support {
          * Create a new collection instance if the value isn't one already.
          *
          * @param iterable<TValue> $items
-         * @return $this<TValue>
+         * @return $this
          */
         public static function make($items = []);
 
@@ -39,7 +39,7 @@ namespace Illuminate\Support {
          *
          * @param int      $number
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public static function times($number, callable $callback = null);
 
@@ -47,7 +47,7 @@ namespace Illuminate\Support {
          * Wrap the given value in a collection if applicable.
          *
          * @param TValue $value
-         * @return $this<TValue>
+         * @return $this
          */
         public static function wrap($value);
 
@@ -93,7 +93,7 @@ namespace Illuminate\Support {
         /**
          * Collapse the items into a single enumerable.
          *
-         * @return $this<TValue>
+         * @return $this
          */
         public function collapse();
 
@@ -156,7 +156,7 @@ namespace Illuminate\Support {
          *
          * @param mixed    $items
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function diffUsing($items, callable $callback);
 
@@ -164,7 +164,7 @@ namespace Illuminate\Support {
          * Get the items whose keys and values are not present in the given items.
          *
          * @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function diffAssoc($items);
 
@@ -173,7 +173,7 @@ namespace Illuminate\Support {
          *
          * @param mixed    $items
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function diffAssocUsing($items, callable $callback);
 
@@ -181,7 +181,7 @@ namespace Illuminate\Support {
          * Get the items whose keys are not present in the given items.
          *
          * @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function diffKeys($items);
 
@@ -190,7 +190,7 @@ namespace Illuminate\Support {
          *
          * @param mixed    $items
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function diffKeysUsing($items, callable $callback);
 
@@ -199,7 +199,7 @@ namespace Illuminate\Support {
          *
          * @param callable|null $callback
          * @param bool          $strict
-         * @return $this<TValue>
+         * @return $this
          */
         public function duplicates($callback = null, $strict = false);
 
@@ -207,7 +207,7 @@ namespace Illuminate\Support {
          * Retrieve duplicate items using strict comparison.
          *
          * @param callable|null $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function duplicatesStrict($callback = null);
 
@@ -223,7 +223,7 @@ namespace Illuminate\Support {
          * Execute a callback over each nested chunk of items.
          *
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function eachSpread(callable $callback);
 
@@ -241,7 +241,7 @@ namespace Illuminate\Support {
          * Get all items except for those with the specified keys.
          *
          * @param mixed $keys
-         * @return $this<TValue>
+         * @return $this
          */
         public function except($keys);
 
@@ -249,7 +249,7 @@ namespace Illuminate\Support {
          * Run a filter over each of the items.
          *
          * @param callable|null $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function filter(callable $callback = null);
 
@@ -259,7 +259,7 @@ namespace Illuminate\Support {
          * @param bool     $value
          * @param callable $callback
          * @param callable $default
-         * @return $this<TValue>|mixed
+         * @return $this|mixed
          */
         public function when($value, callable $callback, callable $default = null);
 
@@ -268,7 +268,7 @@ namespace Illuminate\Support {
          *
          * @param callable $callback
          * @param callable $default
-         * @return $this<TValue>|mixed
+         * @return $this|mixed
          */
         public function whenEmpty(callable $callback, callable $default = null);
 
@@ -277,7 +277,7 @@ namespace Illuminate\Support {
          *
          * @param callable $callback
          * @param callable $default
-         * @return $this<TValue>|mixed
+         * @return $this|mixed
          */
         public function whenNotEmpty(callable $callback, callable $default = null);
 
@@ -287,7 +287,7 @@ namespace Illuminate\Support {
          * @param bool     $value
          * @param callable $callback
          * @param callable $default
-         * @return $this<TValue>|mixed
+         * @return $this|mixed
          */
         public function unless($value, callable $callback, callable $default = null);
 
@@ -296,7 +296,7 @@ namespace Illuminate\Support {
          *
          * @param callable $callback
          * @param callable $default
-         * @return $this<TValue>|mixed
+         * @return $this|mixed
          */
         public function unlessEmpty(callable $callback, callable $default = null);
 
@@ -305,7 +305,7 @@ namespace Illuminate\Support {
          *
          * @param callable $callback
          * @param callable $default
-         * @return $this<TValue>|mixed
+         * @return $this|mixed
          */
         public function unlessNotEmpty(callable $callback, callable $default = null);
 
@@ -315,7 +315,7 @@ namespace Illuminate\Support {
          * @param string $key
          * @param mixed  $operator
          * @param mixed  $value
-         * @return $this<TValue>
+         * @return $this
          */
         public function where($key, $operator = null, $value = null);
 
@@ -324,7 +324,7 @@ namespace Illuminate\Support {
          *
          * @param string $key
          * @param mixed  $value
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereStrict($key, $value);
 
@@ -334,7 +334,7 @@ namespace Illuminate\Support {
          * @param string $key
          * @param mixed  $values
          * @param bool   $strict
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereIn($key, $values, $strict = false);
 
@@ -343,7 +343,7 @@ namespace Illuminate\Support {
          *
          * @param string $key
          * @param mixed  $values
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereInStrict($key, $values);
 
@@ -352,7 +352,7 @@ namespace Illuminate\Support {
          *
          * @param string $key
          * @param array  $values
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereBetween($key, $values);
 
@@ -361,7 +361,7 @@ namespace Illuminate\Support {
          *
          * @param string $key
          * @param array  $values
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereNotBetween($key, $values);
 
@@ -371,7 +371,7 @@ namespace Illuminate\Support {
          * @param string $key
          * @param mixed  $values
          * @param bool   $strict
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereNotIn($key, $values, $strict = false);
 
@@ -380,7 +380,7 @@ namespace Illuminate\Support {
          *
          * @param string $key
          * @param mixed  $values
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereNotInStrict($key, $values);
 
@@ -388,7 +388,7 @@ namespace Illuminate\Support {
          * Filter the items, removing any items that don't match the given type.
          *
          * @param string $type
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereInstanceOf($type);
 
@@ -414,7 +414,7 @@ namespace Illuminate\Support {
         /**
          * Flip the values with their keys.
          *
-         * @return $this<TValue>
+         * @return $this
          */
         public function flip();
 
@@ -432,7 +432,7 @@ namespace Illuminate\Support {
          *
          * @param array|callable|string $groupBy
          * @param bool                  $preserveKeys
-         * @return $this<TValue>
+         * @return $this
          */
         public function groupBy($groupBy, $preserveKeys = false);
 
@@ -440,7 +440,7 @@ namespace Illuminate\Support {
          * Key an associative array by a field or using a callback.
          *
          * @param callable|string $keyBy
-         * @return $this<TValue>
+         * @return $this
          */
         public function keyBy($keyBy);
 
@@ -465,7 +465,7 @@ namespace Illuminate\Support {
          * Intersect the collection with the given items.
          *
          * @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function intersect($items);
 
@@ -473,7 +473,7 @@ namespace Illuminate\Support {
          * Intersect the collection with the given items by key.
          *
          * @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function intersectByKeys($items);
 
@@ -503,7 +503,7 @@ namespace Illuminate\Support {
         /**
          * Get the keys of the collection items.
          *
-         * @return $this<TValue>
+         * @return $this
          */
         public function keys();
 
@@ -520,7 +520,7 @@ namespace Illuminate\Support {
          * Run a map over each of the items.
          *
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function map(callable $callback);
 
@@ -528,7 +528,7 @@ namespace Illuminate\Support {
          * Run a map over each nested chunk of items.
          *
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function mapSpread(callable $callback);
 
@@ -538,7 +538,7 @@ namespace Illuminate\Support {
          * The callback should return an associative array with a single key/value pair.
          *
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function mapToDictionary(callable $callback);
 
@@ -548,17 +548,14 @@ namespace Illuminate\Support {
          * The callback should return an associative array with a single key/value pair.
          *
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function mapToGroups(callable $callback);
 
         /**
-         * Run an associative map over each of the items.
-         *
-         * The callback should return an associative array with a single key/value pair.
-         *
-         * @param callable $callback
-         * @return $this<TValue>
+         * @template T
+         * @param callable(TValue, array-key):array<T> $callback
+         * @return static<T>
          */
         public function mapWithKeys(callable $callback);
 
@@ -566,7 +563,7 @@ namespace Illuminate\Support {
          * Map a collection and flatten the result by a single level.
          *
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function flatMap(callable $callback);
 
@@ -574,7 +571,7 @@ namespace Illuminate\Support {
          * Map the values into a new class.
          *
          * @param string $class
-         * @return $this<TValue>
+         * @return $this
          */
         public function mapInto($class);
 
@@ -582,7 +579,7 @@ namespace Illuminate\Support {
          * Merge the collection with the given items.
          *
          * @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function merge($items);
 
@@ -590,7 +587,7 @@ namespace Illuminate\Support {
          * Recursively merge the collection with the given items.
          *
          * @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function mergeRecursive($items);
 
@@ -598,7 +595,7 @@ namespace Illuminate\Support {
          * Create a collection by using this collection for keys and another for its values.
          *
          * @param mixed $values
-         * @return $this<TValue>
+         * @return $this
          */
         public function combine($values);
 
@@ -606,7 +603,7 @@ namespace Illuminate\Support {
          * Union the collection with the given items.
          *
          * @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function union($items);
 
@@ -631,7 +628,7 @@ namespace Illuminate\Support {
          *
          * @param int $step
          * @param int $offset
-         * @return $this<TValue>
+         * @return $this
          */
         public function nth($step, $offset = 0);
 
@@ -639,7 +636,7 @@ namespace Illuminate\Support {
          * Get the items with the specified keys.
          *
          * @param mixed $keys
-         * @return $this<TValue>
+         * @return $this
          */
         public function only($keys);
 
@@ -648,7 +645,7 @@ namespace Illuminate\Support {
          *
          * @param int $page
          * @param int $perPage
-         * @return $this<TValue>
+         * @return $this
          */
         public function forPage($page, $perPage);
 
@@ -658,7 +655,7 @@ namespace Illuminate\Support {
          * @param callable|string $key
          * @param mixed           $operator
          * @param mixed           $value
-         * @return $this<TValue>
+         * @return $this
          */
         public function partition($key, $operator = null, $value = null);
 
@@ -666,7 +663,7 @@ namespace Illuminate\Support {
          * Push all of the given items onto the collection.
          *
          * @param iterable $source
-         * @return $this<TValue>
+         * @return $this
          */
         public function concat($source);
 
@@ -674,7 +671,7 @@ namespace Illuminate\Support {
          * Get one or a specified number of items randomly from the collection.
          *
          * @param int|null $number
-         * @return $this<TValue>|mixed
+         * @return $this|mixed
          *
          * @throws \InvalidArgumentException
          */
@@ -693,7 +690,7 @@ namespace Illuminate\Support {
          * Replace the collection items with the given items.
          *
          * @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function replace($items);
 
@@ -701,14 +698,14 @@ namespace Illuminate\Support {
          * Recursively replace the collection items with the given items.
          *
          * @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function replaceRecursive($items);
 
         /**
          * Reverse items order.
          *
-         * @return $this<TValue>
+         * @return $this
          */
         public function reverse();
 
@@ -725,7 +722,7 @@ namespace Illuminate\Support {
          * Shuffle the items in the collection.
          *
          * @param int $seed
-         * @return $this<TValue>
+         * @return $this
          */
         public function shuffle($seed = null);
 
@@ -733,7 +730,7 @@ namespace Illuminate\Support {
          * Skip the first {$count} items.
          *
          * @param int $count
-         * @return $this<TValue>
+         * @return $this
          */
         public function skip($count);
 
@@ -742,7 +739,7 @@ namespace Illuminate\Support {
          *
          * @param int $offset
          * @param int $length
-         * @return $this<TValue>
+         * @return $this
          */
         public function slice($offset, $length = null);
 
@@ -750,7 +747,7 @@ namespace Illuminate\Support {
          * Split a collection into a certain number of groups.
          *
          * @param int $numberOfGroups
-         * @return $this<TValue>
+         * @return $this
          */
         public function split($numberOfGroups);
 
@@ -758,7 +755,7 @@ namespace Illuminate\Support {
          * Chunk the collection into chunks of the given size.
          *
          * @param int $size
-         * @return $this<TValue>
+         * @return $this
          */
         public function chunk($size);
 
@@ -766,7 +763,7 @@ namespace Illuminate\Support {
          * Sort through each item with a callback.
          *
          * @param callable|null $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function sort(callable $callback = null);
 
@@ -776,7 +773,7 @@ namespace Illuminate\Support {
          * @param callable|string $callback
          * @param int             $options
          * @param bool            $descending
-         * @return $this<TValue>
+         * @return $this
          */
         public function sortBy($callback, $options = SORT_REGULAR, $descending = false);
 
@@ -785,7 +782,7 @@ namespace Illuminate\Support {
          *
          * @param callable|string $callback
          * @param int             $options
-         * @return $this<TValue>
+         * @return $this
          */
         public function sortByDesc($callback, $options = SORT_REGULAR);
 
@@ -794,7 +791,7 @@ namespace Illuminate\Support {
          *
          * @param int  $options
          * @param bool $descending
-         * @return $this<TValue>
+         * @return $this
          */
         public function sortKeys($options = SORT_REGULAR, $descending = false);
 
@@ -802,7 +799,7 @@ namespace Illuminate\Support {
          * Sort the collection keys in descending order.
          *
          * @param int $options
-         * @return $this<TValue>
+         * @return $this
          */
         public function sortKeysDesc($options = SORT_REGULAR);
 
@@ -818,7 +815,7 @@ namespace Illuminate\Support {
          * Take the first or last {$limit} items.
          *
          * @param int $limit
-         * @return $this<TValue>
+         * @return $this
          */
         public function take($limit);
 
@@ -843,7 +840,7 @@ namespace Illuminate\Support {
          *
          * @param string|array $value
          * @param string|null  $key
-         * @return $this<TValue>
+         * @return $this
          */
         public function pluck($value, $key = null);
 
@@ -851,7 +848,7 @@ namespace Illuminate\Support {
          * Create a collection of all elements that do not pass a given truth test.
          *
          * @param callable|mixed $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function reject($callback = true);
 
@@ -860,7 +857,7 @@ namespace Illuminate\Support {
          *
          * @param string|callable|null $key
          * @param bool                 $strict
-         * @return $this<TValue>
+         * @return $this
          */
         public function unique($key = null, $strict = false);
 
@@ -868,14 +865,14 @@ namespace Illuminate\Support {
          * Return only unique items from the collection array using strict comparison.
          *
          * @param string|callable|null $key
-         * @return $this<TValue>
+         * @return $this
          */
         public function uniqueStrict($key = null);
 
         /**
          * Reset the keys on the underlying array.
          *
-         * @return $this<TValue>
+         * @return $this
          */
         public function values();
 
@@ -884,7 +881,7 @@ namespace Illuminate\Support {
          *
          * @param int   $size
          * @param mixed $value
-         * @return $this<TValue>
+         * @return $this
          */
         public function pad($size, $value);
 
@@ -892,7 +889,7 @@ namespace Illuminate\Support {
          * Count the number of items in the collection using a given truth test.
          *
          * @param callable|null $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function countBy($callback = null);
 
@@ -962,18 +959,18 @@ namespace Illuminate\Support\Traits {
          * Create a new collection instance if the value isn't one already.
          *
          * @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public static function make($items = []) {}
 
         /** @param int      $number
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public static function times($number, callable $callback = null) {}
 
         /**
-         * @return $this<TValue>
+         * @return $this
          */
         public static function wrap($value) {}
 
@@ -1006,7 +1003,7 @@ namespace Illuminate\Support\Traits {
          */
         public function mode($key = null) {}
 
-        /** @return $this<TValue>
+        /** @return $this
          */
         public function collapse() {}
 
@@ -1051,40 +1048,40 @@ namespace Illuminate\Support\Traits {
 
         /** @param mixed    $items
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function diffUsing($items, callable $callback) {}
 
         /** @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function diffAssoc($items) {}
 
         /** @param mixed    $items
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function diffAssocUsing($items, callable $callback) {}
 
         /** @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function diffKeys($items) {}
 
         /** @param mixed    $items
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function diffKeysUsing($items, callable $callback) {}
 
         /** @param callable|null $callback
          * @param bool          $strict
-         * @return $this<TValue>
+         * @return $this
          */
         public function duplicates($callback = null, $strict = false) {}
 
         /** @param callable|null $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function duplicatesStrict($callback = null) {}
 
@@ -1094,7 +1091,7 @@ namespace Illuminate\Support\Traits {
         public function each(callable $callback) {}
 
         /** @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function eachSpread(callable $callback) {}
 
@@ -1106,101 +1103,101 @@ namespace Illuminate\Support\Traits {
         public function every($key, $operator = null, $value = null) {}
 
         /** @param mixed $keys
-         * @return $this<TValue>
+         * @return $this
          */
         public function except($keys) {}
 
         /** @param callable|null $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function filter(callable $callback = null) {}
 
         /** @param bool     $value
          * @param callable $callback
          * @param callable $default
-         * @return $this<TValue>|mixed
+         * @return $this|mixed
          */
         public function when($value, callable $callback, callable $default = null) {}
 
         /** @param callable $callback
          * @param callable $default
-         * @return $this<TValue>|mixed
+         * @return $this|mixed
          */
         public function whenEmpty(callable $callback, callable $default = null) {}
 
         /** @param callable $callback
          * @param callable $default
-         * @return $this<TValue>|mixed
+         * @return $this|mixed
          */
         public function whenNotEmpty(callable $callback, callable $default = null) {}
 
         /** @param bool     $value
          * @param callable $callback
          * @param callable $default
-         * @return $this<TValue>|mixed
+         * @return $this|mixed
          */
         public function unless($value, callable $callback, callable $default = null) {}
 
         /** @param callable $callback
          * @param callable $default
-         * @return $this<TValue>|mixed
+         * @return $this|mixed
          */
         public function unlessEmpty(callable $callback, callable $default = null) {}
 
         /** @param callable $callback
          * @param callable $default
-         * @return $this<TValue>|mixed
+         * @return $this|mixed
          */
         public function unlessNotEmpty(callable $callback, callable $default = null) {}
 
         /** @param string $key
          * @param mixed  $operator
          * @param mixed  $value
-         * @return $this<TValue>
+         * @return $this
          */
         public function where($key, $operator = null, $value = null) {}
 
         /** @param string $key
          * @param mixed  $value
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereStrict($key, $value) {}
 
         /** @param string $key
          * @param mixed  $values
          * @param bool   $strict
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereIn($key, $values, $strict = false) {}
 
         /** @param string $key
          * @param mixed  $values
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereInStrict($key, $values) {}
 
         /** @param string $key
          * @param array  $values
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereBetween($key, $values) {}
 
         /** @param string $key
          * @param array  $values
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereNotBetween($key, $values) {}
 
         /** @param string $key
          * @param mixed  $values
          * @param bool   $strict
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereNotIn($key, $values, $strict = false) {}
 
         /** @param string $key
          * @param mixed  $values
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereNotInStrict($key, $values) {}
 
@@ -1208,7 +1205,7 @@ namespace Illuminate\Support\Traits {
          * Filter the items, removing any items that don't match the given type.
          *
          * @param string $type
-         * @return $this<TValue>
+         * @return $this
          */
         public function whereInstanceOf($type) {}
 
@@ -1225,7 +1222,7 @@ namespace Illuminate\Support\Traits {
          */
         public function firstWhere($key, $operator = null, $value = null) {}
 
-        /** @return $this<TValue>
+        /** @return $this
          */
         public function flip() {}
 
@@ -1237,12 +1234,12 @@ namespace Illuminate\Support\Traits {
 
         /** @param array|callable|string $groupBy
          * @param bool                  $preserveKeys
-         * @return $this<TValue>
+         * @return $this
          */
         public function groupBy($groupBy, $preserveKeys = false) {}
 
         /** @param callable|string $keyBy
-         * @return $this<TValue>
+         * @return $this
          */
         public function keyBy($keyBy) {}
 
@@ -1258,12 +1255,12 @@ namespace Illuminate\Support\Traits {
         public function implode($value, $glue = null) {}
 
         /** @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function intersect($items) {}
 
         /** @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function intersectByKeys($items) {}
 
@@ -1281,7 +1278,7 @@ namespace Illuminate\Support\Traits {
          */
         public function join($glue, $finalGlue = '') {}
 
-        /** @return $this<TValue>
+        /** @return $this
          */
         public function keys() {}
 
@@ -1292,63 +1289,63 @@ namespace Illuminate\Support\Traits {
         public function last(callable $callback = null, $default = null) {}
 
         /** @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function map(callable $callback) {}
 
         /** @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function mapSpread(callable $callback) {}
 
         /**         * The callback should return an associative array with a single key/value pair.
          *
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function mapToDictionary(callable $callback) {}
 
         /**         * The callback should return an associative array with a single key/value pair.
          *
          * @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function mapToGroups(callable $callback) {}
 
-        /**         * The callback should return an associative array with a single key/value pair.
-         *
-         * @param callable $callback
-         * @return $this<TValue>
+        /**
+         * @template T
+         * @param callable(TValue, array-key):array<T> $callback
+         * @return static<T>
          */
         public function mapWithKeys(callable $callback) {}
 
         /** @param callable $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function flatMap(callable $callback) {}
 
         /** @param string $class
-         * @return $this<TValue>
+         * @return $this
          */
         public function mapInto($class) {}
 
         /** @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function merge($items) {}
 
         /** @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function mergeRecursive($items) {}
 
         /**         s
-         * @return $this<TValue>
+         * @return $this
          */
         public function combine($values) {}
 
         /** @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function union($items) {}
 
@@ -1367,12 +1364,12 @@ namespace Illuminate\Support\Traits {
          *
          * @param int $step
          * @param int $offset
-         * @return $this<TValue>
+         * @return $this
          */
         public function nth($step, $offset = 0) {}
 
         /** @param mixed $keys
-         * @return $this<TValue>
+         * @return $this
          */
         public function only($keys) {}
 
@@ -1381,24 +1378,24 @@ namespace Illuminate\Support\Traits {
          *
          * @param int $page
          * @param int $perPage
-         * @return $this<TValue>
+         * @return $this
          */
         public function forPage($page, $perPage) {}
 
         /** @param callable|string $key
          * @param mixed           $operator
          * @param mixed           $value
-         * @return $this<TValue>
+         * @return $this
          */
         public function partition($key, $operator = null, $value = null) {}
 
         /** @param iterable $source
-         * @return $this<TValue>
+         * @return $this
          */
         public function concat($source) {}
 
         /** @param int|null $number
-         * @return $this<TValue>|mixed
+         * @return $this|mixed
          *
          * @throws \InvalidArgumentException
          */
@@ -1413,16 +1410,16 @@ namespace Illuminate\Support\Traits {
         public function reduce(callable $callback, $initial = null) {}
 
         /** @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function replace($items) {}
 
         /** @param mixed $items
-         * @return $this<TValue>
+         * @return $this
          */
         public function replaceRecursive($items) {}
 
-        /** @return $this<TValue>
+        /** @return $this
          */
         public function reverse() {}
 
@@ -1433,7 +1430,7 @@ namespace Illuminate\Support\Traits {
         public function search($value, $strict = false) {}
 
         /** @param int $seed
-         * @return $this<TValue>
+         * @return $this
          */
         public function shuffle($seed = null) {}
 
@@ -1441,52 +1438,52 @@ namespace Illuminate\Support\Traits {
          * Skip the first {$count} items.
          *
          * @param int $count
-         * @return $this<TValue>
+         * @return $this
          */
         public function skip($count) {}
 
         /** @param int $offset
          * @param int $length
-         * @return $this<TValue>
+         * @return $this
          */
         public function slice($offset, $length = null) {}
 
         /** @param int $numberOfGroups
-         * @return $this<TValue>
+         * @return $this
          */
         public function split($numberOfGroups) {}
 
         /** @param int $size
-         * @return $this<TValue>
+         * @return $this
          */
         public function chunk($size) {}
 
         /** @param callable|null $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function sort(callable $callback = null) {}
 
         /** @param callable|string $callback
          * @param int             $options
          * @param bool            $descending
-         * @return $this<TValue>
+         * @return $this
          */
         public function sortBy($callback, $options = SORT_REGULAR, $descending = false) {}
 
         /** @param callable|string $callback
          * @param int             $options
-         * @return $this<TValue>
+         * @return $this
          */
         public function sortByDesc($callback, $options = SORT_REGULAR) {}
 
         /** @param int  $options
          * @param bool $descending
-         * @return $this<TValue>
+         * @return $this
          */
         public function sortKeys($options = SORT_REGULAR, $descending = false) {}
 
         /** @param int $options
-         * @return $this<TValue>
+         * @return $this
          */
         public function sortKeysDesc($options = SORT_REGULAR) {}
 
@@ -1499,7 +1496,7 @@ namespace Illuminate\Support\Traits {
          * Take the first or last {$limit} items.
          *
          * @param int $limit
-         * @return $this<TValue>
+         * @return $this
          */
         public function take($limit) {}
 
@@ -1515,38 +1512,38 @@ namespace Illuminate\Support\Traits {
 
         /** @param string|array $value
          * @param string|null  $key
-         * @return ($key is null ? static<int|string|bool> : ( $value is null ? $this<T> : static<int|string|bool> ))
+         * @return ($key is null ? static<int|string|bool> : ( $value is null ? static<T> : static<int|string|bool> ))
          */
         public function pluck($value, $key = null) {}
 
         /** @param callable|mixed $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function reject($callback = true) {}
 
         /** @param string|callable|null $key
          * @param bool                 $strict
-         * @return $this<TValue>
+         * @return $this
          */
         public function unique($key = null, $strict = false) {}
 
         /** @param string|callable|null $key
-         * @return $this<TValue>
+         * @return $this
          */
         public function uniqueStrict($key = null) {}
 
-        /** @return $this<TValue>
+        /** @return $this
          */
         public function values() {}
 
         /** @param int   $size
 
-         * @return $this<TValue>
+         * @return $this
          */
         public function pad($size, $value) {}
 
         /** @param callable|null $callback
-         * @return $this<TValue>
+         * @return $this
          */
         public function countBy($callback = null) {}
 
