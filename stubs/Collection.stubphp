@@ -627,7 +627,7 @@ class Collection implements ArrayAccess, Enumerable
      * Chunk the collection into chunks of the given size.
      *
      * @param int $size
-     * @return $this
+     * @return static<static<T>>
      */
     public function chunk($size) {}
 
@@ -635,7 +635,7 @@ class Collection implements ArrayAccess, Enumerable
      * Sort through each item with a callback.
      *
      * @param callable(T, T):int $callback
-     * @return static<static<T>>
+     * @return $this
      */
     public function sort(callable $callback = null) {}
 
