@@ -20,6 +20,13 @@ namespace Illuminate\Database\Eloquent {
      /** @use BuildsQueries<T> */
      use BuildsQueries;
 
+// don't know why Psalm cannot get it from vendor's Illuminate\Database\Query\Builder
+      /** @return $this */
+      public function skip(int $value) {}
+
+      /** @return $this */
+      public function take(int $value) {}
+// end don't know why…
       /**
        * @return self<T>
        */
@@ -274,7 +281,6 @@ namespace Illuminate\Database\Query {
      * @use BuildsQueries<T>
      */
     class Builder {
-
       /**
        * @param  string[] $columns
        * @return LengthAwarePaginator<T>
