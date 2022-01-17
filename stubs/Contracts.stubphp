@@ -38,6 +38,14 @@ namespace Illuminate\Container {
          * @psalm-return T
          */
         public function make($abstract = null, array $parameters = []): object {}
+
+        /**
+         * This definition of Psr container but it's overriden in Laravel :(
+         * @template T of object
+         * @psalm-param class-string<T> $id
+         * @psalm-return T
+         */
+        public function get(string $id);
     }
 }
 

@@ -95,7 +95,7 @@ namespace Illuminate\Database\Eloquent {
   trait SoftDeletes
   {
     /** @return $this */
-    public function withTrashed() {}
+    public function withTrashed(bool $withTrashed = true) {}
     /** @return $this */
     public function  onlyTrashed() {}
     /** @return $this */
