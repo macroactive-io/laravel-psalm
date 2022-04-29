@@ -8,29 +8,30 @@ use Illuminate\Support\Traits\EnumeratesValues;
 /**
  * Ideas of markup could be fetched from https://github.com/doctrine/collections/blob/master/lib/Doctrine/Common/Collections/Collection.php
  *
+ * @template TKey of array-key
  * @template T
  *
- * @template-implements ArrayAccess<array-key, T>
- * @template-implements Enumerable<T>
+ * @template-implements ArrayAccess<TKey, T>
+ * @template-implements Enumerable<TKey, T>
 */
 class Collection implements ArrayAccess, Enumerable
 {
-    /** @use EnumeratesValues<T> */
+    /** @use EnumeratesValues<TKey, T> */
     use EnumeratesValues;
 
-    /** @param array<T> $items */
+    /** @param array<TKey, T> $items */
     public function __construct($items = []) {}
 
     /**
      * @psalm-mutation-free
-     * @return array<T>
+     * @return array<TKey, T>
      */
     public function all() {}
 
     /**
      * @template TVal
-     * @param array<TVal> $items
-     * @return static<TVal>
+     * @param array<TKey, TVal> $items
+     * @return static<TKey, TVal>
      */
     public static function make($items = []) {}
 
@@ -395,7 +396,7 @@ class Collection implements ArrayAccess, Enumerable
     /**
      * Get the keys of the collection items.
      *
-     * @return static<array-key>
+     * @return static<int, array-key>
      */
     public function keys() {}
 
@@ -413,14 +414,14 @@ class Collection implements ArrayAccess, Enumerable
      *
      * @param null|string|array $value
      * @param string|null  $key
-     * @return ( $key is null ? static<int|string|bool> : ( $value is null ? static<T> : static<int|string|bool> ) )
+     * @return ( $key is null ? static<int, array-key> : ( $value is null ? static<array-key, T> : static<int, array-key> ) )
      */
     public function pluck($value, $key = null) {}
 
     /**
      * @template TValue
      * @param callable(T, array-key):TValue $callback
-     * @return static<TValue>
+     * @return static<TKey, TValue>
      */
     public function map(callable $callback) {}
 
@@ -431,14 +432,15 @@ class Collection implements ArrayAccess, Enumerable
      *
      * @template TVal
      * @param callable(T, int|string):array<array-key, TVal> $callback
-     * @return static<TVal>
+     * @return static<TKey, TVal>
      */
     public function mapToDictionary(callable $callback) {}
 
     /**
+     * @template TK
      * @template TValue
-     * @param callable(T, array-key):array<TValue> $callback
-     * @return static<TValue>
+     * @param callable(T, TKey):array<TK, TValue> $callback
+     * @return static<TK, TValue>
      */
     public function mapWithKeys(callable $callback) {}
 
@@ -546,7 +548,7 @@ class Collection implements ArrayAccess, Enumerable
     /**
      * Get one or a specified number of items randomly from the collection.
      *
-     * @return ($number is null ? T : static<T>)
+     * @return ($number is null ? T : static<TKey, T>)
      */
     public function random(?int $number = null) {}
 
@@ -627,7 +629,7 @@ class Collection implements ArrayAccess, Enumerable
      * Chunk the collection into chunks of the given size.
      *
      * @param int $size
-     * @return static<static<T>>
+     * @return static<array-key, static<TKey, T>>
      */
     public function chunk($size) {}
 
@@ -729,12 +731,12 @@ class Collection implements ArrayAccess, Enumerable
 
     /**
      * @psalm-mutation-free
-     * @return self<T>
+     * @return self<TKey, T>
      */
     public function toBase() {}
 
     /**
-     * @return \Illuminate\Support\LazyCollection
+     * @return \Illuminate\Support\LazyCollection<TKey, T>
      */
     public function lazy() {}
 

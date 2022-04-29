@@ -5,9 +5,10 @@ namespace Illuminate\Support;
 use Illuminate\Support\Traits\EnumeratesValues;
 
 /**
+ * @template TKey of array-key
  * @template T
  *
- * @template-implements Enumerable<T>
+ * @template-implements Enumerable<TKey, T>
 */
 class LazyCollection implements Enumerable
 {

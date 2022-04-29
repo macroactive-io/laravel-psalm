@@ -35,17 +35,17 @@ use Illuminate\Support\Enumerable;
 
   /**
    * @template T
-   * @mixin \Illuminate\Support\Collection<T>
+   * @mixin \Illuminate\Support\Collection<int, T>
    */
   abstract class AbstractPaginator implements Htmlable {}
 
   /**
    * @template T of object
-   * @mixin \Illuminate\Support\Collection<T>
+   * @mixin \Illuminate\Support\Collection<int, T>
    *
    * @template-extends AbstractPaginator<T>
    * @template-implements LengthAwarePaginatorContract<T>
-   * @template-implements Enumerable<T>
+   * @template-implements Enumerable<int, T>
    * @template-implements ArrayAccess<array-key, T>
    */
   class LengthAwarePaginator extends AbstractPaginator implements LengthAwarePaginatorContract, Enumerable, ArrayAccess, Countable

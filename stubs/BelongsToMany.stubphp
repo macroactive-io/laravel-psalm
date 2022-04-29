@@ -41,14 +41,14 @@ class BelongsToMany extends Relation
      /**
       * @param array|mixed $id
       * @param string[] $columns
-      * @psalm-return ($id is array ? Collection<T> : (T|null))
+      * @psalm-return ($id is array ? Collection<int, T> : (T|null))
       */
      public function find($id, $columns = ['*']) {}
 
      /**
       * @param int[] $ids
       * @param string[] $columns
-      * @psalm-return Collection<T>
+      * @psalm-return Collection<int, T>
       */
      public function findMany($ids, $columns = ['*']) {}
 

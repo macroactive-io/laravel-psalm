@@ -19,10 +19,11 @@ namespace Illuminate\Support {
     use Countable;
 
     /**
+     * @template TKey of array-key
      * @template TValue
      *
      * @template-extends Arrayable<TValue>
-     * @template-extends IteratorAggregate<array-key,TValue>
+     * @template-extends IteratorAggregate<TKey,TValue>
      */
     interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, JsonSerializable
     {
@@ -896,7 +897,7 @@ namespace Illuminate\Support {
         /**
          * Collect the values into a collection.
          *
-         * @return \Illuminate\Support\Collection<TValue>
+         * @return \Illuminate\Support\Collection<TKey, TValue>
          */
         public function collect();
 
@@ -951,6 +952,7 @@ namespace Illuminate\Support\Traits {
     use Countable;
 
     /**
+     * @template TKey of array-key
      * @template TValue
      */
     trait EnumeratesValues
@@ -1547,7 +1549,7 @@ namespace Illuminate\Support\Traits {
          */
         public function countBy($callback = null) {}
 
-        /** @return \Illuminate\Support\Collection<TValue>
+        /** @return \Illuminate\Support\Collection<TKey, TValue>
          */
         public function collect() {}
 
