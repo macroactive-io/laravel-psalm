@@ -1,13 +1,14 @@
 <?php
 
 namespace Illuminate\Contracts\Pagination {
-
-use Illuminate\Database\Eloquent\Model;
+    use IteratorAggregate;
+    use Traversable;
 
   /**
-   * @template T of Model
+   * @template T
+   * @template-implements IteratorAggregate<array-key,T>
    */
-  interface Paginator
+  interface Paginator extends IteratorAggregate
   {
       /**
        * Get all of the items being paginated.
@@ -15,57 +16,71 @@ use Illuminate\Database\Eloquent\Model;
        * @return array<T>
        */
       public function items();
+
+      /**
+       * @return Traversable<array-key,T>
+       */
+      public function getIterator();
   }
 
   /**
-   * @template T of Model
-   * @extends Paginator<T>
+   * @template T
+   * @template-extends Paginator<T>
    */
   interface LengthAwarePaginator extends Paginator {}
 }
 
 namespace Illuminate\Pagination {
 
-use ArrayAccess;
-use Countable;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator as LengthAwarePaginatorContract;
-use Illuminate\Contracts\Support\Htmlable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Enumerable;
+    use ArrayAccess;
+    use Countable;
+    use Illuminate\Contracts\Pagination\LengthAwarePaginator as LengthAwarePaginatorContract;
+    use Illuminate\Contracts\Support\Htmlable;
+    use Illuminate\Support\Enumerable;
+    use IteratorAggregate;
 
-  /**
-   * @template T
-   * @mixin \Illuminate\Support\Collection<int, T>
-   */
-  abstract class AbstractPaginator implements Htmlable {}
+    /**
+     * @template T
+     * @mixin \Illuminate\Support\Collection<int, T>
+     */
+    abstract class AbstractPaginator implements Htmlable {}
 
-  /**
-   * @template T of object
-   * @mixin \Illuminate\Support\Collection<int, T>
-   *
-   * @template-extends AbstractPaginator<T>
-   * @template-implements LengthAwarePaginatorContract<T>
-   * @template-implements Enumerable<int, T>
-   * @template-implements ArrayAccess<array-key, T>
-   */
-  class LengthAwarePaginator extends AbstractPaginator implements LengthAwarePaginatorContract, Enumerable, ArrayAccess, Countable
-  {
-      /**
-       * @param callable(T, array-key):bool|null $callback
-       * @psalm-mutation-free
-       * @return $this
-       */
-      public function filter(callable $callback = null) {}
+    /**
+     * @template T
+     *
+     * @template-extends AbstractPaginator
+     * @template-implements LengthAwarePaginatorContract<T>
+     * @template-implements Enumerable<int, T>
+     * @template-implements ArrayAccess<array-key, T>
+     */
+    class LengthAwarePaginator extends AbstractPaginator implements LengthAwarePaginatorContract, Enumerable, ArrayAccess
+    {
+        /**
+         * @param callable(T, array-key):bool|null $callback
+         * @psalm-mutation-free
+         * @return $this
+         */
+        public function filter(callable $callback = null) {}
 
-      /**
-       * @return array<T>
-       */
-      public function items() {}
+        /**
+         * @psalm-mutation-free
+         * @return \Traversable<array-key,T>
+         */
+        public function getIterator() {}
+    }
+}
 
-      /**
-       * @psalm-mutation-free
-       * @return \Iterator<T>
-       */
-      public function getIterator() {}
-  }
+namespace LaravelDoctrine\ORM\Pagination {
+    use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+
+    /**
+     * @template T
+     */
+    class PaginatorAdapter
+    {
+        /**
+         * @return LengthAwarePaginator<T>
+         */
+        public function make(): LengthAwarePaginator {}
+    }
 }
