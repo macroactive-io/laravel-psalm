@@ -211,6 +211,11 @@ abstract class Relation
      */
     public function has($relation, string $operator = '>=', int $count = 1, string $boolean = 'and', Closure $callback = null) {}
 
+    /**
+    * @return bool
+    */
+    public function exists() {}
+    
     public function count(string $columns = '*'): int {}
 
     public function __call($name, $arguments) {}

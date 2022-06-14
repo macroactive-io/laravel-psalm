@@ -47,7 +47,7 @@ namespace Illuminate\Database\Eloquent {
       /**
        * @param array|int|numeric|string $id
        * @param string[] $columns
-       * @return ($id is array ? Collection<int, T> : (T|null))
+       * @return ($id is array ? Collection<array-key, T> : (T|null))
        */
       public function find($id, $columns = ['*']) {}
 
