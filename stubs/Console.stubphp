@@ -12,7 +12,12 @@ namespace Illuminate\Console {
         protected OutputInterface $output;
         /** @psalm-suppress PropertyNotSetInConstructor */
         protected \Illuminate\Contracts\Foundation\Application $laravel;
-
+        /**
+        * @psalm-suppress PropertyNotSetInConstructor
+         * @var \Illuminate\Console\View\Components\Factory
+         * @internal This property is not meant to be used or overwritten outside the framework.
+         */
+        protected $components;
         /**
          * @var string
          * @psalm-suppress PropertyNotSetInConstructor

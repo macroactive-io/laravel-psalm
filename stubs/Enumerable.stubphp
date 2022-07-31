@@ -479,15 +479,13 @@ namespace Illuminate\Support {
         public function intersectByKeys($items);
 
         /**
-         * Determine if the collection is empty or not.
-         *
          * @return bool
          */
         public function isEmpty();
 
         /**
          * Determine if the collection is not empty.
-         *
+         * @psalm-assert-if-true TValue $this->first()
          * @return bool
          */
         public function isNotEmpty();
@@ -1211,12 +1209,6 @@ namespace Illuminate\Support\Traits {
          */
         public function whereInstanceOf($type) {}
 
-        /** @param callable|null $callback
-         * @param mixed         $default
-         * @return TValue|null
-         */
-        public function first(callable $callback = null, $default = null) {}
-
         /** @param string $key
          * @param mixed  $operator
          * @param mixed  $value
@@ -1266,11 +1258,16 @@ namespace Illuminate\Support\Traits {
          */
         public function intersectByKeys($items) {}
 
-        /** @return bool
+        /**
+         * @psalm-assert-if-true null $this->first()
+         * @psalm-assert-if-false  TValue $this->last()
+         * @return bool
          */
         public function isEmpty() {}
 
-        /** @return bool
+        /**
+         * @psalm-assert-if-true !null $this->first()
+         * @return bool
          */
         public function isNotEmpty() {}
 

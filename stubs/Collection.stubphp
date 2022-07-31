@@ -3,9 +3,20 @@
 namespace Illuminate\Support;
 
 use ArrayAccess;
+use Illuminate\Contracts\Support\CanBeEscapedWhenCastToString;
 use Illuminate\Support\Traits\EnumeratesValues;
+use Illuminate\Support\Traits\Macroable;
 
-class Collection
+/**
+ * @template TKey of array-key
+ * @template TValue
+ *
+ * @psalm-immutable
+ *
+ * @implements \ArrayAccess<TKey, TValue>
+ * @implements \Illuminate\Support\Enumerable<TKey, TValue>
+ */
+class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerable
 {
     /**
      * @param null|string|array $value
@@ -13,4 +24,30 @@ class Collection
      * @return ( $key is null ? static<int, array-key> : ( $value is null ? static<array-key, TValue> : static<int, array-key> ) )
      */
     public function pluck($value, $key = null) {}
+
+    /**
+     * @psalm-assert-if-true TValue $this->first()
+     * @psalm-assert-if-false TValue  $this->last()
+     */
+    public function isNotEmpty() {}
+
+    /**
+     * @psalm-assert-if-true   null $this->first()
+     * @psalm-assert-if-false null $this->last()
+     */
+    public function isEmpty() {}
+
+    /**
+     * @template TFirstDefault
+     *
+     * @param  (callable(TValue,TKey): bool)|null  $callback
+     * @param  TFirstDefault|(\Closure(): TFirstDefault)  $default
+     * @return TValue|TFirstDefault
+     */
+    public function first(callable $callback = null, $default = null) {}
+
+    /**
+     * @return $number is null ? TValue : static<int, TValue>
+     */
+    public function random($number = null) {}
 }
