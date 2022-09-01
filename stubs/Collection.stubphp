@@ -26,8 +26,8 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     public function pluck($value, $key = null) {}
 
     /**
-     * @psalm-assert-if-true TValue $this->first()
-     * @psalm-assert-if-false TValue  $this->last()
+     * @psalm-assert-if-true !null $this->first()
+     * @psalm-assert-if-false !null  $this->last()
      */
     public function isNotEmpty() {}
 
@@ -42,7 +42,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
      *
      * @param  (callable(TValue,TKey): bool)|null  $callback
      * @param  TFirstDefault|(\Closure(): TFirstDefault)  $default
-     * @return TValue|TFirstDefault
+     * @return TValue|null
      */
     public function first(callable $callback = null, $default = null) {}
 
