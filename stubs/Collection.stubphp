@@ -279,7 +279,7 @@ class Collection implements ArrayAccess, Enumerable
     /**
      * Run a filter over each of the items.
      *
-     * @param callable(T, array-key):bool|null $callback
+     * @param callable(T, TKey):bool|null $callback
      * @psalm-mutation-free
      * @return $this
      */
@@ -637,7 +637,7 @@ class Collection implements ArrayAccess, Enumerable
      * Sort through each item with a callback.
      *
      * @param callable(T, T):int $callback
-     * @return $this
+     * @return static<int, T>
      */
     public function sort(callable $callback = null) {}
 
