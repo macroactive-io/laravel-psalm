@@ -293,6 +293,13 @@ class Collection implements ArrayAccess, Enumerable
     public function first(callable $callback = null, $default = null) {}
 
     /**
+     * @param callable(T, array-key):bool|null $callback
+     * @psalm-mutation-free
+     * @return T
+     */
+    public function firstOrFail($key = null, $operator = null, $value = null) {}
+
+    /**
      * Get a flattened array of the items in the collection.
      *
      * @param int $depth

@@ -33,7 +33,7 @@ namespace Illuminate\Database\Eloquent {
       public function getQuery(): Builder {}
 
       /**
-       * @return Collection<int, T>
+       * @return Collection<array-key, T>
        */
       public function get($columns = ['*']): Collection {}
 
@@ -47,14 +47,14 @@ namespace Illuminate\Database\Eloquent {
       /**
        * @param array|int|numeric|string $id
        * @param string[] $columns
-       * @return ($id is array ? Collection<int, T> : (T|null))
+       * @return ($id is array ? Collection<array-key, T> : (T|null))
        */
       public function find($id, $columns = ['*']) {}
 
       /**
        * @param int[] $ids
        * @param string[] $columns
-       * @return Collection<int, T>
+       * @return Collection<array-key, T>
        */
       public function findMany($ids, $columns = ['*']) {}
 
@@ -267,7 +267,7 @@ namespace Illuminate\Database\Eloquent {
       */
      public function paginate(?int $perPage = null, array $columns = ['*'], string $pageName = 'page', ?int $page = null) {}
 
-    /** @return LazyCollection<int, T> */
+    /** @return LazyCollection<array-key, T> */
     public function lazy(int $chunkSize = 1000) {}
   }
 }
@@ -298,12 +298,12 @@ namespace Illuminate\Database\Concerns {
    */
   trait BuildsQueries {
 
-    /** @param callable(results:Collection<int, T> page: int) $callback */
+    /** @param callable(results:Collection<array-key, T> page: int) $callback */
     public function chunk(int $count, callable $callback): bool {}
 
     /**
      * @param callable(T $item) $callback
-     * @return Collection<int, T>
+     * @return Collection<array-key, T>
      */
     public function chunkMap(callable $callback, int $count = 1000) {}
 
@@ -312,10 +312,10 @@ namespace Illuminate\Database\Concerns {
      */
     public function each(callable $callback, int $count = 1000): bool {}
 
-    /** @return Collection<int, T> */
+    /** @return Collection<array-key, T> */
     public function lazy(int $chunkSize = 1000) {}
 
-    /** @return Collection<int, T> */
+    /** @return Collection<array-key, T> */
     public function lazyById(int $chunkSize = 1000, ?string $column = null, ?string $alias = null) {}
 
      /**
