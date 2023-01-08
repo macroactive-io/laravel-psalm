@@ -60,13 +60,13 @@ namespace Illuminate\Database\Eloquent {
 
       /**
        * @param  array|mixed  $columns
-       * @return Collection<int, static>
+       * @return Collection<array-key, static>
        */
       public static function all($columns = ['*']) {}
 
       /**
        * @param string[] $columns
-       * @psalm-return Collection<int, static>
+       * @psalm-return Collection<array-key, static>
        */
       public function get($columns = ['*']) {}
 
