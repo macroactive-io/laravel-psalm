@@ -60,7 +60,7 @@ namespace Illuminate\Database\Eloquent {
 
       /**
        * @param  array|mixed  $columns
-       * @return Collection<int, static>
+       * @return Collection<array-key, static>
        */
       public static function all($columns = ['*']) {}
 
