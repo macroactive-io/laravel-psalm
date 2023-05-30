@@ -1,6 +1,5 @@
 {
   "name": "macroactive/laravel-psalm",
-  "version": "9.0",
   "description": "Psalm integration with Laravel. Do not cover Facades. Relatively simple integration",
   "minimum-stability": "stable",
   "license": "MIT",
