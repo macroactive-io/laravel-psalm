@@ -47,7 +47,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     public function first(callable $callback = null, $default = null) {}
 
     /**
-     * @return $number is null ? TValue : static<int, TValue>
+     * @return ($number is null ? TValue : static<int, TValue>)
      */
     public function random($number = null) {}
 }

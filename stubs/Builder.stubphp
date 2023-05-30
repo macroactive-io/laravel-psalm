@@ -266,9 +266,6 @@ namespace Illuminate\Database\Eloquent {
       * @return LengthAwarePaginator<T>
       */
      public function paginate(?int $perPage = null, array $columns = ['*'], string $pageName = 'page', ?int $page = null) {}
-
-    /** @return LazyCollection<array-key, T> */
-    public function lazy(int $chunkSize = 1000) {}
   }
 }
 
@@ -292,6 +289,7 @@ namespace Illuminate\Database\Query {
 namespace Illuminate\Database\Concerns {
   use Illuminate\Pagination\LengthAwarePaginator;
   use Illuminate\Support\Collection;
+  use Illuminate\Support\LazyCollection;
 
   /**
    * @template T of object
@@ -312,10 +310,10 @@ namespace Illuminate\Database\Concerns {
      */
     public function each(callable $callback, int $count = 1000): bool {}
 
-    /** @return Collection<array-key, T> */
+    /** @return LazyCollection<array-key, T> */
     public function lazy(int $chunkSize = 1000) {}
 
-    /** @return Collection<array-key, T> */
+    /** @return LazyCollection<int, T> */
     public function lazyById(int $chunkSize = 1000, ?string $column = null, ?string $alias = null) {}
 
      /**
