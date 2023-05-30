@@ -16,7 +16,7 @@
     }
   },
   "conflict": {
-    "laravel/framework": "^9.0"
+    "laravel/framework": "<9.0"
   },
   "require": {
     "php": ">7.4",
