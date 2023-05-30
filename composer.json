@@ -1,5 +1,6 @@
 {
   "name": "macroactive/laravel-psalm",
+  "version": "9.0",
   "description": "Psalm integration with Laravel. Do not cover Facades. Relatively simple integration",
   "minimum-stability": "stable",
   "license": "MIT",
@@ -13,6 +14,9 @@
     "psr-4": {
       "Macroactive\\LaravelPsalmPlugin\\": "src/"
     }
+  },
+  "conflict": {
+    "laravel/framework": "^9.0"
   },
   "require": {
     "php": ">7.4",

@@ -75,14 +75,14 @@ namespace Illuminate\Database\Eloquent {
        * @param string[] $columns
        * @psalm-return $this
        */
-      public function find($id, $columns = ['*']) {}
+      public static function find($id, $columns = ['*']) {}
 
       /**
        * @param $id
        * @param string[] $columns
        * @psalm-return $this
        */
-      public function findOrFail($id, $columns = ['*']) {}
+      public static function findOrFail($id, $columns = ['*']) {}
 
       /** @return Builder<static> */
       public static function on(?string $connection = null) {}
