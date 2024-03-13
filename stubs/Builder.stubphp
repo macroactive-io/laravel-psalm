@@ -296,7 +296,7 @@ namespace Illuminate\Database\Concerns {
    */
   trait BuildsQueries {
 
-    /** @param callable(results:Collection<array-key, T> page: int) $callback */
+    /** @param callable(Collection<array-key, T>, int) $callback */
     public function chunk(int $count, callable $callback): bool {}
 
     /**
