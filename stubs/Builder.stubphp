@@ -184,6 +184,9 @@ namespace Illuminate\Database\Eloquent {
        */
       public function orWhereIn(string $column, $values, string $boolean = 'and', bool $not = false) {}
 
+      /** @return $this */
+      public function orWhereJsonContains(string $column, mixed $value) {}
+
       /**
        * @param Builder|QueryBuilder|Closure|Arrayable|array $values
        * @return $this
