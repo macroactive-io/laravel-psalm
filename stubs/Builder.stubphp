@@ -276,6 +276,9 @@ namespace Illuminate\Database\Eloquent {
       * @return LengthAwarePaginator<T>
       */
      public function paginate(?int $perPage = null, array $columns = ['*'], string $pageName = 'page', ?int $page = null) {}
+
+     /** @return $this **/
+     public function distinct() {}
   }
 }
 
@@ -293,6 +296,9 @@ namespace Illuminate\Database\Query {
        * @return LengthAwarePaginator<T>
        */
       public function paginate(?int $perPage = null, array $columns = ['*'], string $pageName = 'page', ?int $page = null) {}
+
+      /** @return $this **/
+      public function distinct() {}
     }
 }
 
