@@ -8,8 +8,8 @@ use Illuminate\Support\Traits\EnumeratesValues;
 use Illuminate\Support\Traits\Macroable;
 
 /**
- * @template TKey of array-key
- * @template TValue
+ * @template-covariant TKey of array-key
+ * @template-covariant TValue
  *
  * @psalm-immutable
  *

@@ -15,12 +15,12 @@
     }
   },
   "conflict": {
-    "laravel/framework": "<9.0"
+    "laravel/framework": "<11.0"
   },
   "require": {
     "php": ">7.4",
     "ext-xml": "*",
-    "vimeo/psalm": ">=4.7"
+    "vimeo/psalm": ">=6.5"
   },
   "extra": {
     "psalm" : {

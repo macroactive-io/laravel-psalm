@@ -1,62 +1,39 @@
 <?php
 
-namespace Illuminate\Contracts\Pagination {
-    use IteratorAggregate;
-    use Traversable;
-
-  /**
-   * @template T
-   * @template-implements IteratorAggregate<array-key,T>
-   */
-  interface Paginator extends IteratorAggregate
-  {
-      /**
-       * Get all of the items being paginated.
-       *
-       * @return array<T>
-       */
-      public function items();
-
-      /**
-       * @return Traversable<array-key,T>
-       */
-      public function getIterator();
-  }
-
-  /**
-   * @template T
-   * @template-extends Paginator<T>
-   */
-  interface LengthAwarePaginator extends Paginator {}
-}
-
 namespace Illuminate\Pagination {
-
     use ArrayAccess;
     use Countable;
+    use Stringable;
     use Illuminate\Contracts\Pagination\LengthAwarePaginator as LengthAwarePaginatorContract;
     use Illuminate\Contracts\Support\Htmlable;
     use Illuminate\Support\Enumerable;
     use IteratorAggregate;
 
     /**
-     * @template T
-     * @mixin \Illuminate\Support\Collection<int, T>
+     * @template TKey of array-key
+     *
+     * @template-covariant TValue
+     *
+     * @mixin \Illuminate\Support\Collection<TKey, TValue>
      */
-    abstract class AbstractPaginator implements Htmlable {}
+    abstract class AbstractPaginator implements Htmlable, Stringable {}
 
     /**
-     * @template T
+     * @template TKey of array-key
      *
-     * @template-extends AbstractPaginator
-     * @template-implements LengthAwarePaginatorContract<T>
-     * @template-implements Enumerable<int, T>
-     * @template-implements ArrayAccess<array-key, T>
+     * @template-covariant TValue
+     *
+     * @extends AbstractPaginator<TKey, TValue>
+     *
+     * @implements Arrayable<TKey, TValue>
+     * @implements ArrayAccess<TKey, TValue>
+     * @implements IteratorAggregate<TKey, TValue>
+     * @implements LengthAwarePaginatorContract<TKey, TValue>
      */
     class LengthAwarePaginator extends AbstractPaginator implements LengthAwarePaginatorContract, Enumerable, ArrayAccess
     {
         /**
-         * @param callable(T, array-key):bool|null $callback
+         * @param callable(TValue, array-key):bool|null $callback
          * @psalm-mutation-free
          * @return $this
          */
@@ -64,7 +41,7 @@ namespace Illuminate\Pagination {
 
         /**
          * @psalm-mutation-free
-         * @return \Traversable<array-key,T>
+         * @return \Traversable<array-key,TValue>
          */
         public function getIterator() {}
     }
@@ -79,7 +56,7 @@ namespace LaravelDoctrine\ORM\Pagination {
     class PaginatorAdapter
     {
         /**
-         * @return LengthAwarePaginator<T>
+         * @return LengthAwarePaginator<array-key, T>
          */
         public function make(): LengthAwarePaginator {}
     }

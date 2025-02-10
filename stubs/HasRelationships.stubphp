@@ -16,86 +16,84 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Model;
 
+// copypasted and just replaced `$this` with `self`
 trait HasRelationships
 {
     /**
-     * @template RelName of Model
-     * @param  class-string<RelName> $related
-     * @param  string|null  $foreignKey
-     * @param  string|null  $localKey
-     * @return HasOne<RelName>
+     * @template TRelatedModel of \Illuminate\Database\Eloquent\Model
+     * @param  class-string<TRelatedModel>  $related
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<TRelatedModel, self>
      */
-    public function hasOne($related, string $foreignKey = null, string $localKey = null) {}
+    public function hasOne($related, string | null $foreignKey = null, string | null $localKey = null) {}
+
+    /**
+     * @template TRelatedModel of \Illuminate\Database\Eloquent\Model
+     * @template TIntermediateModel of \Illuminate\Database\Eloquent\Model
+     *
+     * @param  class-string<TRelatedModel>  $related
+     * @param  class-string<TIntermediateModel>  $through
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneThrough<TRelatedModel, TIntermediateModel, self>
+     */
+    public function hasOneThrough($related, $through, null|string $firstKey = null, null|string $secondKey = null, null|string $localKey = null, null|string $secondLocalKey = null) {}
+
+    /**
+     * @template TRelatedModel of \Illuminate\Database\Eloquent\Model
+     *
+     * @param  class-string<TRelatedModel>  $related
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne<TRelatedModel, self>
+     */
+    public function morphOne($related, string $name, null|string $type = null, null|string $id = null, null|string $localKey = null) {}
 
 
     /**
-     * @template RelName of Model
-     * @param  class-string<RelName> $related
-     * @return Relations\HasOneThrough<RelName>
+     * @template TRelatedModel of \Illuminate\Database\Eloquent\Model
+     *
+     * @param  class-string<TRelatedModel>  $related
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<TRelatedModel, self>
      */
-    public function hasOneThrough($related, string $through, string $firstKey = null, string $secondKey = null, string $localKey = null, string $secondLocalKey = null) {}
-
-    /**
-     * @template RelName of Model
-     * @param  class-string<RelName> $related
-     * @return Relations\MorphOne<RelName>
-     */
-    public function morphOne($related, string $name, string $type = null, string $id = null, string $localKey = null) {}
-
-    /**
-     * @template RelName of Model
-     * @param  class-string<RelName> $related
-     * @return BelongsTo<RelName>&static
-     */
-    public function belongsTo(string $related, string $foreignKey = null, string $ownerKey = null, string $relation = null) {}
-
-    /**
-     * @param  string|null  $name
-     * @param  string|null  $type
-     * @param  string|null  $id
-     * @param  string|null  $ownerKey
-     * @return MorphTo
-     */
-    public function morphTo($name = null, $type = null, $id = null, $ownerKey = null) {}
-
-    /**
-     * @template RelName of Model
-     * @param  class-string<RelName> $related
-     * @param  string|null  $foreignKey
-     * @param  string|null  $localKey
-     * @return HasMany<RelName>
-     */
-    public function hasMany($related, $foreignKey = null, $localKey = null) {}
-
-    /**
-     * @template RelName of Model
-     * @param  class-string<RelName> $related
-     * @param  string  $through
-     * @param  string|null  $firstKey
-     * @param  string|null  $secondKey
-     * @param  string|null  $localKey
-     * @param  string|null  $secondLocalKey
-     * @return HasManyThrough<RelName>
-     */
-    public function hasManyThrough($related, $through, $firstKey = null, $secondKey = null, $localKey = null, $secondLocalKey = null) {}
-
-    /**
-     * @template RelName of Model
-     * @param  class-string<RelName> $related
-     * @param  string  $name
-     * @param  string|null  $type
-     * @param  string|null  $id
-     * @param  string|null  $localKey
-     * @return MorphMany<RelName>
-     */
-    public function morphMany($related, $name, $type = null, $id = null, $localKey = null) {}
+    public function belongsTo($related, null|string $foreignKey = null, null|string $ownerKey = null, null|string $relation = null) {}
 
 
     /**
-     * @template RelName of Model
-     * @param  class-string<RelName> $related
-     * @return BelongsToMany<RelName>
+     * @template TRelatedModel of \Illuminate\Database\Eloquent\Model
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo<TRelatedModel, self>
      */
-    public function belongsToMany(string $related, ?string $table = null, ?string $foreignPivotKey = null, ?string $relatedPivotKey = null,
-                                  ?string $parentKey = null, ?string $relatedKey = null, ?string $relation = null) {}
+    public function morphTo(null|string $name = null, null|string $type = null, null|string $id = null, null|string $ownerKey = null) {}
+
+    /**
+     * @template TRelatedModel of \Illuminate\Database\Eloquent\Model
+     *
+     * @param  class-string<TRelatedModel>  $related
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<TRelatedModel, self>
+     */
+    public function hasMany($related, string|null $foreignKey = null, string|null $localKey = null) {}
+
+    /**
+     * @template TRelatedModel of \Illuminate\Database\Eloquent\Model
+     * @template TIntermediateModel of \Illuminate\Database\Eloquent\Model
+     *
+     * @param  class-string<TRelatedModel>  $related
+     * @param  class-string<TIntermediateModel>  $through
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<TRelatedModel, TIntermediateModel, self>
+     */
+    public function hasManyThrough($related, $through, string|null $firstKey = null, string|null $secondKey = null, string|null $localKey = null, string|null $secondLocalKey = null) {}
+
+    /**
+     * @template TRelatedModel of \Illuminate\Database\Eloquent\Model
+     *
+     * @param  class-string<TRelatedModel>  $related
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany<TRelatedModel, self>
+     */
+    public function morphMany($related, string $name, string|null $type = null, string|null $id = null, string|null $localKey = null) {}
+
+    /**
+     * @template TRelatedModel of \Illuminate\Database\Eloquent\Model
+     *
+     * @param  class-string<TRelatedModel>  $related
+     * @param  string|class-string<\Illuminate\Database\Eloquent\Model>|null  $table
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TRelatedModel, self>
+     */
+    public function belongsToMany($related, $table = null, string|null $foreignPivotKey = null, string|null $relatedPivotKey = null,
+                                  string|null $parentKey = null, string|null $relatedKey = null, string|null $relation = null)
+    {}
 }

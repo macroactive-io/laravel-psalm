@@ -11,56 +11,57 @@ namespace Illuminate\Database\Eloquent {
   use Illuminate\Support\LazyCollection;
 
   /**
-   * @template T of Model
-   * @mixin T
-   * @mixin QueryBuilder<T>
+   * @template TModel of \Illuminate\Database\Eloquent\Model
+   * @mixin TModel
    */
   class Builder
   {
-     /** @use BuildsQueries<T> */
+     /** @use BuildsQueries<TModel> */
      use BuildsQueries;
 
 // don't know why Psalm cannot get it from vendor's Illuminate\Database\Query\Builder
+
       /** @return $this */
       public function skip(int $value) {}
 
       /** @return $this */
       public function take(int $value) {}
+
+      /**
+       * @param  \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|\Illuminate\Contracts\Database\Query\Expression|string  $column
+       * @return $this
+       */
+      public function orderByDesc($column) {}
+
+    /**
+     * @param  \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder<*>|\Illuminate\Contracts\Database\Query\Expression|string  $column
+     * @return $this
+     */
+      public function orderBy($column, string $direction = 'asc') {}
+
 // end don't know why…
       /**
-       * @return self<T>
+       * @return self<TModel>
        */
       public function getQuery(): Builder {}
 
       /**
-       * @return Collection<array-key, T>
-       */
-      public function get($columns = ['*']): Collection {}
-
-      /**
        * @param int|string|numeric $id
        * @param string[]   $columns
-       * @return T
+       * @return TModel
        */
       public function findOrFail($id, $columns = ['*']) {}
 
       /**
-       * @param array|int|numeric|string $id
-       * @param string[] $columns
-       * @return ($id is array ? Collection<array-key, T> : (T|null))
-       */
-      public function find($id, $columns = ['*']) {}
-
-      /**
        * @param int[] $ids
        * @param string[] $columns
-       * @return Collection<array-key, T>
+       * @return Collection<array-key, TModel>
        */
       public function findMany($ids, $columns = ['*']) {}
 
       /**
       * @param string[] $columns
-      * @return T
+      * @return TModel
       */
       public function firstOrFail($columns = ['*']) {}
 
@@ -97,22 +98,13 @@ namespace Illuminate\Database\Eloquent {
       public function whereJsonDoesntContainKey($column, $boolean = 'and') {}
 
       /**
-       * @param string|callable $column
+       * @param string|\Closure(self<TModel>):void $column
        * @param '='|'!='|'>='|'<='|'>'|'<'|'like'|'not like' $operator
        * @param mixed $value
        * @param 'and'|'or'      $boolean
        * @return $this
        */
       public function where($column, $operator = null, $value = null, $boolean = 'and') {}
-
-      /**
-       * @param  \Closure|array|string|Expression  $column
-       * @psalm-return $this
-       */
-      public function orderBy($column, $direction = 'asc') {}
-
-      /** @return $this */
-      public function orderByRaw($sql, $bindings = []) {}
 
       // have to copypaste as mixin on mixin doesn't work
       public function exists(): bool {}
@@ -151,6 +143,13 @@ namespace Illuminate\Database\Eloquent {
        * @return $this
        */
       public function orWhereNotNull($columns) {}
+
+      /**
+       * @param  \Closure|array|string|Expression  $columns
+       * @param  'and'|'or'   $boolean
+       * @return $this
+       */
+      public function orWhereNull($columns) {}
 
       /**
      * @param  string|string[]  $relations
@@ -273,7 +272,7 @@ namespace Illuminate\Database\Eloquent {
       public static function __callStatic($name, $arguments) {}
      /**
       * @param  string[] $columns
-      * @return LengthAwarePaginator<T>
+      * @return LengthAwarePaginator<array-key, TModel>
       */
      public function paginate(?int $perPage = null, array $columns = ['*'], string $pageName = 'page', ?int $page = null) {}
 
@@ -288,12 +287,12 @@ namespace Illuminate\Database\Query {
 
     /**
      * @template T of object
-     * @use BuildsQueries<T>
+     * @use BuildsQueries<TModel>
      */
     class Builder {
       /**
        * @param  string[] $columns
-       * @return LengthAwarePaginator<T>
+       * @return LengthAwarePaginator<array-key, TModel>
        */
       public function paginate(?int $perPage = null, array $columns = ['*'], string $pageName = 'page', ?int $page = null) {}
 
@@ -308,41 +307,14 @@ namespace Illuminate\Database\Concerns {
   use Illuminate\Support\LazyCollection;
 
   /**
-   * @template T of object
+   * @template TValue of object
    */
   trait BuildsQueries {
-
-    /** @param callable(Collection<array-key, T>, int) $callback */
-    public function chunk(int $count, callable $callback): bool {}
-
-    /**
-     * @param callable(T $item) $callback
-     * @return Collection<array-key, T>
-     */
-    public function chunkMap(callable $callback, int $count = 1000) {}
-
-    /**
-     * @param callable(T $value, array-key $key) $callback
-     */
-    public function each(callable $callback, int $count = 1000): bool {}
-
-    /** @return LazyCollection<array-key, T> */
+    /** @return LazyCollection<array-key, TValue> */
     public function lazy(int $chunkSize = 1000) {}
 
-    /** @return LazyCollection<int, T> */
+    /** @return LazyCollection<int, TValue> */
     public function lazyById(int $chunkSize = 1000, ?string $column = null, ?string $alias = null) {}
-
-     /**
-      * @param string[] $columns
-      * @return T|null
-      */
-     public function first($columns = ['*']) {}
-
-     /**
-      * @param string[] $columns
-      * @return T|null
-      */
-     public function sole($columns = ['*']) {}
 
      /**
       * @template ARG
@@ -361,7 +333,7 @@ namespace Illuminate\Database\Concerns {
 
      /**
       * @param  string[] $columns
-      * @return LengthAwarePaginator<T>
+      * @return LengthAwarePaginator<array-key, TValue>
       */
      public function paginate(?int $perPage = null, array $columns = ['*'], string $pageName = 'page', ?int $page = null) {}
   }
