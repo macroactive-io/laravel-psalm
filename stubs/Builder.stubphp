@@ -39,6 +39,11 @@ namespace Illuminate\Database\Eloquent {
      */
       public function orderBy($column, string $direction = 'asc') {}
 
+      /** @return $this */
+      public function lockForUpdate() {}
+
+      /** @return $this */
+      public function limit(int $value) {}
 // end don't know why…
       /**
        * @return self<TModel>
@@ -59,7 +64,7 @@ namespace Illuminate\Database\Eloquent {
        */
       public function findMany($ids, $columns = ['*']) {}
 
-      /**
+     /**
       * @param string[] $columns
       * @return TModel
       */
