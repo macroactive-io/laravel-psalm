@@ -1,51 +1,19 @@
 <?php
 
-namespace Illuminate\Pagination {
-    use ArrayAccess;
-    use Countable;
-    use Stringable;
-    use Illuminate\Contracts\Pagination\LengthAwarePaginator as LengthAwarePaginatorContract;
-    use Illuminate\Contracts\Support\Htmlable;
-    use Illuminate\Support\Enumerable;
-    use IteratorAggregate;
-
+namespace Illuminate\Contracts\Pagination {
     /**
+     * Laravel 12 has "(at)method $this through(callable(TValue): mixed $callback)" annotation which for some reason breaks psalm as of 6.13 version.
+     *
      * @template TKey of array-key
-     *
      * @template-covariant TValue
-     *
-     * @mixin \Illuminate\Support\Collection<TKey, TValue>
      */
-    abstract class AbstractPaginator implements Htmlable, Stringable {}
-
-    /**
-     * @template TKey of array-key
-     *
-     * @template-covariant TValue
-     *
-     * @extends AbstractPaginator<TKey, TValue>
-     *
-     * @implements Arrayable<TKey, TValue>
-     * @implements ArrayAccess<TKey, TValue>
-     * @implements IteratorAggregate<TKey, TValue>
-     * @implements LengthAwarePaginatorContract<TKey, TValue>
-     */
-    class LengthAwarePaginator extends AbstractPaginator implements LengthAwarePaginatorContract, Enumerable, ArrayAccess
+    interface Paginator
     {
-        /**
-         * @param callable(TValue, array-key):bool|null $callback
-         * @psalm-mutation-free
-         * @return $this
-         */
-        public function filter(callable $callback = null) {}
-
-        /**
-         * @psalm-mutation-free
-         * @return \Traversable<array-key,TValue>
-         */
-        public function getIterator() {}
+        /** @return array<TKey, TValue> */
+        public function items();
     }
 }
+
 
 namespace LaravelDoctrine\ORM\Pagination {
     use Illuminate\Contracts\Pagination\LengthAwarePaginator;
